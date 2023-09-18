@@ -1,10 +1,19 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 
+import {topFilmsReducer} from "../reducers/topFilmsReducer/topFilmsReducer";
+import {appReducer} from "../reducers/appReducer/appReducer";
+import {AppReducerActionTypes} from "../reducers/appReducer/appReducer-types";
+import {TopFilmsActionTypes} from "../reducers/topFilmsReducer/TopFilmsActionType";
+
 
 const rootReducer = combineReducers({
-
+    app: appReducer,
+    topFilms: topFilmsReducer,
 })
+
+type ReduxActionType = AppReducerActionTypes | TopFilmsActionTypes
+
 
 export const store = configureStore({
     reducer: rootReducer,
@@ -12,3 +21,6 @@ export const store = configureStore({
 })
 
 export type RootState = ReturnType<typeof store.getState>
+
+export type AppDispatchType = ThunkDispatch<RootState, unknown, ReduxActionType>
+export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, ReduxActionType>

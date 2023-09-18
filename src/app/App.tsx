@@ -1,22 +1,28 @@
-import React, {useEffect} from 'react';
-import './App.css';
-import {filmsAPI} from "../api/filmsAPI";
+import React from 'react';
+import {StartPage} from "../features/startPage/StartPage";
+import {TopFilmsPage} from "../features/topFilms/TopFilmsPage";
+import {useAppSwitchTheme} from "./useAppSwitchTheme/useAppSwitchTheme";
+import {darkTheme, lightTheme} from "../common/styles/Theme.styled";
+import {ThemeProvider} from "styled-components";
+import { GlobalStyled } from '../common/styles/GlobalStyles.styled';
+import {PremieresPage} from "../features/premieres/PremieresPage";
+import {Header} from "../features/header/Header";
 
 export function App() {
-
-
-    getMovies()
-    async function getMovies () {
-
-        filmsAPI.topFilms()
-            .then(res => console.log(res.data))
-
-    }
+    const {theme, switchTheme} = useAppSwitchTheme()
 
     return (
-        <div className="App">
+        <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
+            <GlobalStyled theme={theme === "dark" ? darkTheme : lightTheme}/>
 
-        </div>
+            <>
+                <Header/>
+                <StartPage/>
+                <PremieresPage/>
+                <TopFilmsPage/>
+            </>
+
+        </ThemeProvider>
     );
 }
 

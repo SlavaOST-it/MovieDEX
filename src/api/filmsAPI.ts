@@ -1,4 +1,6 @@
 import {instance} from "./apiConfig/instance";
+import {PremieresFilmsType} from "./types/PremieresFilmsType";
+import {TopFilmsType} from "./types/TopFilmsTypes";
 
 
 export const filmsAPI = {
@@ -7,47 +9,9 @@ export const filmsAPI = {
         return instance<TopFilmsType>(`films/top?page=${currentPage}`, {});
     },
 
+    getPremiere(year: number, month: string) {
+        return instance<PremieresFilmsType>(`films/premieres?year=${year}&month=${month}`)
+    }
+
 }
 
-export type TopFilmsType = {
-    "pagesCount": number,
-    "currentPage": number,
-    "films": FilmType[]
-}
-
-export type FilmType = {
-    "filmId": number,
-    "nameRu": string | null,
-    "nameEn": string | null,
-    "year": string | null,
-    "filmLength": string | null,
-    "countries": [
-        {
-            "country": string | null,
-        },
-        {
-            "country": string | null,
-        },
-        {
-            "country": string | null,
-        }
-    ],
-    "genres": [
-        {
-            "genre": string | null,
-        },
-        {
-            "genre": string | null,
-        },
-        {
-            "genre": string | null,
-        }
-    ],
-    "rating": string | null,
-    "ratingVoteCount": number | null,
-    "posterUrl": string | null,
-    "posterUrlPreview": string | null,
-    "ratingChange": string | null,
-    "isRatingUp": string | null,
-    "isAfisha": number
-}

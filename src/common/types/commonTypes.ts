@@ -11,6 +11,6 @@ export enum AppStatus {
 //     CAPTCHA = 10
 // }
 
-// export type UsersPageType = {
-//     type: 'users' | 'friends'
+// export types UsersPageType = {
+//     types: 'users' | 'friends'
 // }

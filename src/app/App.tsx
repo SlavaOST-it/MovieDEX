@@ -12,8 +12,8 @@ export function App() {
     const {theme, switchTheme} = useAppSwitchTheme()
 
     return (
-        <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
-            <GlobalStyled theme={theme === "dark" ? darkTheme : lightTheme}/>
+        <ThemeProvider theme={lightTheme}>
+            <GlobalStyled theme={lightTheme}/>
 
             <>
                 <Header/>

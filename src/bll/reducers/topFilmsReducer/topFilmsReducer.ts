@@ -1,33 +1,14 @@
-import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {filmsAPI, FilmType, TopFilmsType} from "../../../api/filmsAPI";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {AxiosError} from "axios";
+
 import {AppThunkType} from "../../store/store";
+
+import {filmsAPI} from "../../../api/filmsAPI";
 import {setAppStatusAC} from "../appReducer/appReducer";
 import {AppStatus} from "../../../common/types/commonTypes";
-import {AxiosError} from "axios";
+import {FilmType, TopFilmsType} from "../../../api/types/TopFilmsTypes";
 import {baseErrorHandler} from "../../../utils/error-utils/error-utils";
 
-
-// export const fetchTopFilms = createAsyncThunk(
-//     'topFilms/fetchTopFilms',
-//     async (_, thunkAPI) => {
-//         thunkAPI.dispatch(setAppStatusAC({status: AppStatus.LOADING}))
-//
-//         try {
-//             const {
-//                 currentPage,
-//             } = thunkAPI.getState()
-//
-//             const res = await filmsAPI.getTopFilms(currentPage)
-//             thunkAPI.dispatch(setTopFilms({pagesCount: res.data.pagesCount, films: res.data.films}))
-//             thunkAPI.dispatch(setAppStatusAC({status: AppStatus.SUCCEEDED}))
-//         } catch (e) {
-//             baseErrorHandler(e as Error | AxiosError, thunkAPI.dispatch)
-//             thunkAPI.dispatch(setAppStatusAC({status: AppStatus.FAILED}))
-//         } finally {
-//             thunkAPI.dispatch(setAppStatusAC({status: AppStatus.IDLE}))
-//         }
-//
-//     })
 
 const initialState: TopFilmsType = {
     pagesCount: 0,

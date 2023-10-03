@@ -1,18 +1,19 @@
 import {useEffect, useState} from "react";
+import {ThemeType} from "../../common/types/commonTypes";
 
 
 export const useAppSwitchTheme = ()=>{
-    const [theme, setTheme] = useState("dark");
+    const [theme, setTheme] = useState<ThemeType>("dark");
 
     useEffect(() => {
         const storedThemeValue = localStorage.getItem('currentThemeApp');
 
         if (storedThemeValue) {
-            setTheme(storedThemeValue);
+            setTheme(storedThemeValue as ThemeType);
         }
     }, []);
 
-    const switchTheme = (themeValue: "light" | "dark") => {
+    const switchTheme = (themeValue: ThemeType) => {
         const newTheme = themeValue === "dark" ? "light" : "dark";
         setTheme(newTheme);
         localStorage.setItem('currentThemeApp', newTheme);

@@ -3,7 +3,7 @@ import {AppStatus} from "../../../common/types/commonTypes";
 
 
 const initialState = {
-    status: AppStatus.IDLE,
+    status: AppStatus.START,
     error: null as string | null,
     isInitialized: false
 };

@@ -13,7 +13,7 @@ export const useAppSwitchTheme = ()=>{
         }
     }, []);
 
-    const switchTheme = (themeValue: ThemeType) => {
+    const setSwitchTheme = (themeValue: ThemeType) => {
         const newTheme = themeValue === "dark" ? "light" : "dark";
         setTheme(newTheme);
         localStorage.setItem('currentThemeApp', newTheme);
@@ -21,6 +21,6 @@ export const useAppSwitchTheme = ()=>{
 
     return{
         theme,
-        switchTheme
+        setSwitchTheme
     }
 }

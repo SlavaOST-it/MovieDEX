@@ -1,24 +1,31 @@
 import React from 'react';
-import {NavItem} from "../navItem/NavItem";
 import {PATH} from "../../../utils/routes/routes";
+import {ListItem, NameLink, NavLinkStyle, NavStyle, WrapperMenu} from "./NavMenu.styled";
+
 
 export const NavMenu = () => {
-    const item = [
+    const linksMenu = [
         {link: PATH.startPage, title: 'HOME'},
         {link: PATH.premieres, title: 'PREMIERES'},
         {link: PATH.topFilms, title: 'TOP FILMS'},
     ]
+
     return (
-        <nav>
-            {item.map((el, index) =>
-                <NavItem
-                    key={index}
-                    link={el.link}
-                    titleLink={el.title}
-                    className={"###"}
-                    activeClassName={"###"}
-                />
-            )}
-        </nav>
+        <NavStyle>
+            <WrapperMenu>
+                {linksMenu.map((el, index) =>
+                    <ListItem key={index}>
+                        <NavLinkStyle
+                            to={el.link}
+
+                        >
+                            <NameLink>
+                                {el.title}
+                            </NameLink>
+                        </NavLinkStyle>
+                    </ListItem>
+                )}
+            </WrapperMenu>
+        </NavStyle>
     );
 };

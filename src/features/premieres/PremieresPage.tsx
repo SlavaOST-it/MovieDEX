@@ -3,6 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../utils/hooks/hooks";
 import {premieresSelectors} from "./index";
 import {fetchPremieresFilms} from "../../bll/reducers/premieresFilmsReducer/premieresFilmsReducer";
 import {useCurrentMonthAndYear} from "../../utils/hooks/currentDate";
+import {CardMovie} from "../../common/components/cardMovie/CardMovie";
 
 
 export const PremieresPage = () => {
@@ -20,9 +21,10 @@ export const PremieresPage = () => {
             <h2>Премьеры:</h2>
             <div>
                 {premieresFilms.map(el => (
-                    <div key={el.kinopoiskId}>
-                        <div>{el.nameRu ? el.nameRu : el.nameEn}</div>
-                    </div>
+                    <CardMovie key={el.kinopoiskId}
+                               name={el.nameRu}
+                               image={el.posterUrlPreview}
+                               description={""}/>
                 ))}
             </div>
         </div>

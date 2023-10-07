@@ -22,7 +22,7 @@ export const Icon = styled.svg<IconProps>`
 export const NameTheme = styled.span<{theme: ThemeType}>`
   display: block;
   position: absolute;
-  right: 190%;
+  top: 120%;
   transition: .3s;
 
   font-size: 12px;
@@ -73,7 +73,7 @@ export const SelectThemeBtn = styled.button`
 // ===============================//
 export const ToggleBtnWrapper = styled.div<{ theme: ThemeType }>`
   display: flex;
-  flex-direction: column;
+  //flex-direction: column;
   align-items: center;
   justify-content: center;
 

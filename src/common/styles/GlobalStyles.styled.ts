@@ -42,3 +42,7 @@ export const GlobalStyled = createGlobalStyle<{ theme: any }>`
   }
 `
 
+export let scrollTop = null
+
+
+

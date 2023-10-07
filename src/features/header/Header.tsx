@@ -1,12 +1,22 @@
-import React from 'react';
-import {Logo} from "./logo/Logo";
-import { NavMenu } from './navMenu/NavMenu';
+import React, {FC} from 'react';
 
-export const Header = () => {
+import {HeaderStyled} from "./Header.styled";
+import {ThemeType} from "../../common/types/commonTypes";
+import {Logo} from "./logo/Logo";
+import { ToggleThemeBtn } from './toggleThemeBtn/ToggleThemeBtn';
+
+
+
+type HeaderType = {
+    theme: ThemeType,
+    setTheme: (theme: ThemeType) => void
+}
+
+export const Header: FC<HeaderType> = ({theme, setTheme}) => {
     return (
-        <div>
+        <HeaderStyled>
             <Logo/>
-            <NavMenu/>
-        </div>
+            <ToggleThemeBtn themeValue={theme} setTheme={setTheme}/>
+        </HeaderStyled>
     );
 };

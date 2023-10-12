@@ -1,21 +1,25 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 
-import {topFilmsReducer} from "../reducers/topFilmsReducer/topFilmsReducer";
 import {appReducer} from "../reducers/appReducer/appReducer";
+import {topFilmsReducer} from "../reducers/topFilmsReducer/topFilmsReducer";
+import {categoriesReducer} from "../reducers/categoriesReducer/CategoriesReducer";
+import {premieresFilmsReducer} from "../reducers/premieresFilmsReducer/premieresFilmsReducer";
+
 import {AppReducerActionTypes} from "../reducers/appReducer/appReducer-types";
 import {TopFilmsActionTypes} from "../reducers/topFilmsReducer/TopFilmsActionType";
+import {CategoriesActionTypes} from "../reducers/categoriesReducer/CategoriesActionType";
 import {PremieresFilmsActionTypes} from "../reducers/premieresFilmsReducer/PremieresFilmsActionType";
-import {premieresFilmsReducer} from "../reducers/premieresFilmsReducer/premieresFilmsReducer";
 
 
 const rootReducer = combineReducers({
     app: appReducer,
     topFilms: topFilmsReducer,
-    premieresFilms: premieresFilmsReducer
+    categories: categoriesReducer,
+    premieresFilms: premieresFilmsReducer,
 })
 
-type ReduxActionType = AppReducerActionTypes | TopFilmsActionTypes | PremieresFilmsActionTypes
+type ReduxActionType = AppReducerActionTypes | TopFilmsActionTypes | PremieresFilmsActionTypes | CategoriesActionTypes
 
 
 export const store = configureStore({

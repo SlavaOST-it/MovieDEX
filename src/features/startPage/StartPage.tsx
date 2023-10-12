@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../utils/hooks/hooks";
 import {appSelectors} from "../../app";
 import {setAppStatusAC} from '../../bll/reducers/appReducer/appReducer';
 import {AppStatus} from "../../common/types/commonTypes";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {PATH} from "../../utils/routes/routes";
 import styled from "styled-components";
 
@@ -20,9 +20,6 @@ export const StartPage: FC<StartPageType> = ({moveX, moveY}) => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
-    const appStatus = useAppSelector(appSelectors.appStatus)
-
-
     const startOnClick = () => {
         dispatch(setAppStatusAC({status: AppStatus.IDLE}))
         navigate(PATH.premieres)
@@ -31,16 +28,18 @@ export const StartPage: FC<StartPageType> = ({moveX, moveY}) => {
     return (
         <WrapperStart>
             <Layers>
-                <LayersContainer moveX={moveX} moveY={moveY}>
-
-
-                    <LayerBg background={layer_bg}> </LayerBg>
-                    <LayerGirl background={layer_girl}> </LayerGirl>
-                    <LayerFlower1 background={layer_flower_1}> </LayerFlower1>
-                    <LayerFlower2 background={layer_flower_2}> </LayerFlower2>
+                <LayersContainer $move_x={moveX} $move_y={moveY}>
+                    <LayerBg $background={layer_bg}> </LayerBg>
+                    <LayerGirl $background={layer_girl}> </LayerGirl>
+                    <LayerFlower1 $background={layer_flower_1}> </LayerFlower1>
+                    <LayerFlower2 $background={layer_flower_2}> </LayerFlower2>
 
                     <LayerHead>
                         <TitlePage>MovieDEX</TitlePage>
+                        {/*<SubtitlePage>*/}
+                        {/*    "Кино - это искусство оживлять мечты, вдохновлять*/}
+                        {/*    сердца и путешествовать во времени на крыльях воображения."*/}
+                        {/*</SubtitlePage>*/}
                         <StartButton onClick={startOnClick}>
                             Start
                         </StartButton>
@@ -53,21 +52,21 @@ export const StartPage: FC<StartPageType> = ({moveX, moveY}) => {
 };
 
 type LayerType = {
-    background?: string,
-    moveX?: number,
-    moveY?: number
+    $background?: string,
+    $move_x?: number,
+    $move_y?: number
 }
 export const Layer = styled.div<LayerType>`
   position: absolute;
-  background-image: url(${props => props.background});
+  background-image: url(${props => props.$background});
   inset: -3.6vw;
   background-size: cover;
   background-position: center;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 `
 
 export const LayerBg = styled(Layer)`
@@ -75,7 +74,7 @@ export const LayerBg = styled(Layer)`
   scale: 1.6;
 `
 export const LayerGirl = styled(Layer)`
- transform: translateZ(0) translateX(-20px) translateY(-40px);
+  transform: translateZ(0) translateX(-20px) translateY(-40px);
 `
 
 export const LayerFlower1 = styled(Layer)`
@@ -87,45 +86,58 @@ export const LayerFlower2 = styled(Layer)`
 `
 
 export const StartButton = styled.button`
-  color: white;
-  border: none;
-  background-color: rgba(255, 0, 0, 0);
-  
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.2vw;
+  color: #ffffff;
+  border: 1px solid rgb(255, 255, 255);
+  //border-radius: 10em;
+  background-color: transparent;
+  padding: 10px 30px;
+
   cursor: pointer;
 `
 
 export const SubtitlePage = styled.h3`
-
+  font-size: 24px;
+  max-width: 800px;
+  text-align: center;
+  padding-bottom: 50px;
 `
 
 export const TitlePage = styled.h1`
   display: inline-block;
-  color: white;
+  color: rgba(255, 255, 255, 0.93);
+  font-size: 62px;
+  letter-spacing: 1vw;
   
-  font-size: 58px;
-  
+  text-shadow: 8px 8px 6px rgba(0, 0, 0, 0.5);
 `
 
 export const LayerHead = styled(Layer)`
   display: flex;
   flex-direction: column;
   
+  align-items: center;
+  justify-content: end;
+  margin-bottom: 300px;
+
   transform: translateZ(160px);
-  //z-index: 100;
 `
 
-export const LayersContainer = styled.div<{moveX: number, moveY: number}>`
-  min-height: 90vh;
+export const LayersContainer = styled.div<LayerType>`
+  min-height: 100vh;
   transform-style: preserve-3d;
 
-  transform: rotateX(${props => props.moveY}deg) rotateY(${props => props.moveX}deg);
+  transform: rotateX(${props => props.$move_y}deg) rotateY(${props => props.$move_x}deg);
   will-change: transform;
+  transition: 1s cubic-bezier(.05, .5, 0, 1);
 `
 export const Layers = styled.section`
   perspective: 1000px;
   overflow: hidden;
 `
-
 
 
 export const WrapperStart = styled.div`

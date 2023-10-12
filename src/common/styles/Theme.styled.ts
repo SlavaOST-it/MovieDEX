@@ -16,6 +16,7 @@ export const lightTheme = {
         primary: "#000000",
         secondary: "#969696",
         accent: "#da0018",
+        black_color: "#252425",
     },
 
     media : mediaQueries

@@ -17,7 +17,7 @@ import {AppStatus} from "../common/types/commonTypes";
 // })
 
 export function App() {
-    const { theme, setSwitchTheme } = useAppSwitchTheme();
+    const {theme, setSwitchTheme} = useAppSwitchTheme();
 
     const appStatus = useAppSelector(appSelectors.appStatus);
 
@@ -40,28 +40,25 @@ export function App() {
     return (
         <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
             <GlobalStyled theme={theme === "dark" ? darkTheme : lightTheme}/>
-
-            <WrapperApp>
-                <Header theme={theme} setTheme={setSwitchTheme}/>
-
+            <>
                 {appStatus === AppStatus.START
                     ? <StartPage moveX={moveX} moveY={moveY}/>
-                    : <ContainerApp>
-                        <NavBar/>
-                        {/*<StartPage moveX={moveX} moveY={moveY}/>*/}
-                        <Main/>
-                    </ContainerApp>
+                    : <WrapperApp>
+                        <Header theme={theme} setTheme={setSwitchTheme}/>
+                        <ContainerApp>
+                            <NavBar/>
+                            <Main/>
+                        </ContainerApp>
+                    </WrapperApp>
                 }
-            </WrapperApp>
+            </>
         </ThemeProvider>
     );
 }
 
 export const WrapperApp = styled.div`
-  max-width: 1280px;
+  max-width: 1700px;
   margin: 0 auto;
-
-  //display: flex;
 `
 
 export const ContainerApp = styled.div`

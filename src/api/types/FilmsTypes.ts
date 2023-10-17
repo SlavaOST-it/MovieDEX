@@ -1,21 +1,21 @@
-import { StyleFilmType } from "./CategoriesTypes"
+import {StyleFilmType} from "./CategoriesTypes"
 
 export type FilmItemType = {
     kinopoiskId: number,
-        imdbId: string,
+    imdbId: string,
     nameRu: string,
     nameEn: string,
     nameOriginal: string,
     countries: [
-    {
-        country: string
-    }
-],
+        {
+            country: string
+        }
+    ],
     genres: [
-    {
-        genre: string
-    }
-],
+        {
+            genre: string
+        }
+    ],
     ratingKinopoisk: number,
     ratingImdb: number,
     year: number,
@@ -25,7 +25,7 @@ export type FilmItemType = {
 }
 
 export type FilmsTypes = {
-        total: number,
-        totalPages: number,
-        items:FilmItemType []
-    }
+    total: number,
+    totalPages: number,
+    items: FilmItemType []
+}

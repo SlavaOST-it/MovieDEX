@@ -1,25 +1,25 @@
 export type PremieresFilmsType = {
-    "total": number,
-    "items": PremiereItemType []
+    total: number,
+    items: PremiereItemType []
 }
 
 export type PremiereItemType = {
-    "kinopoiskId": number,
-    "nameRu": string,
-    "nameEn": string,
-    "year": number,
-    "posterUrl": string,
-    "posterUrlPreview": string,
-    "countries": [
+    kinopoiskId: number,
+    nameRu: string,
+    nameEn: string,
+    year: number,
+    posterUrl: string,
+    posterUrlPreview: string,
+    countries: [
         {
-            "country": string
+            country: string
         }
     ],
-    "genres": [
+    genres: [
         {
-            "genre": string
+            genre: string
         }
     ],
-    "duration": number,
-    "premiereRu": string
+    duration: number,
+    premiereRu: string
 }

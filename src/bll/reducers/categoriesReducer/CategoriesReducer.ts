@@ -5,11 +5,20 @@ import {setAppStatusAC} from "../appReducer/appReducer";
 import {AppStatus} from "../../../common/types/commonTypes";
 import {baseErrorHandler} from "../../../utils/error-utils/error-utils";
 import {filmsAPI} from "../../../api/filmsAPI";
-import { CategoriesType } from "../../../api/types/CategoriesTypes";
+import {CategoriesType, SearchType, StyleFilmType} from "../../../api/types/CategoriesTypes";
 
-const initialState: CategoriesType = {
+const initialState: CategoriesType & SearchType = {
     genres: [],
-    countries: []
+    countries: [],
+
+    order: 'RATING',
+    type: 'ALL' as StyleFilmType,
+    ratingFrom: 1,
+    ratingTo: 10,
+    yearFrom: 100,
+    yearTo: 2023,
+    keyword: '',
+    currentPage: 1,
 }
 
 const slice = createSlice({
@@ -27,15 +36,15 @@ export const categoriesReducer = slice.reducer
 export const {setCategories} = slice.actions
 
 // ===== ThunkCreators ===== //
-export const fetchCategories = (): AppThunkType => async (dispatch, getState) => {
-    dispatch(setAppStatusAC({status: AppStatus.LOADING}))
-
-    try {
-        const res = await filmsAPI.getCategories()
-        dispatch(setCategories({genres: res.data.genres, countries: res.data.countries}))
-
-    } catch (e) {
-        baseErrorHandler(e as Error | AxiosError, dispatch)
-        dispatch(setAppStatusAC({status: AppStatus.FAILED}))
-    }
-}
+// export const fetchCategories = (): AppThunkType => async (dispatch, getState) => {
+//     dispatch(setAppStatusAC({status: AppStatus.LOADING}))
+//
+//     try {
+//         const res = await filmsAPI.getCategories()
+//         dispatch(setCategories({genres: res.data.genres, countries: res.data.countries}))
+//         dispatch(setAppStatusAC({status: AppStatus.SUCCEEDED}))
+//     } catch (e) {
+//         baseErrorHandler(e as Error | AxiosError, dispatch)
+//         dispatch(setAppStatusAC({status: AppStatus.FAILED}))
+//     }
+// }

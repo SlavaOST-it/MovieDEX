@@ -19,6 +19,19 @@ export const Films = () => {
         <FilmsWrapper>
             <h2>Каталог <span>фильмов</span></h2>
 
+            <div>
+                <input placeholder={'Название фильма'}/>
+                <button>
+                    Найти
+                </button>
+            </div>
+
+            <div>
+                <div>Жанр</div>
+                <div>Год выхода</div>
+                <div>Страна</div>
+            </div>
+
             <FilmsBlock>
                 {films.map((el, index) => (
                     <CardMovie key={index} item={el}/>

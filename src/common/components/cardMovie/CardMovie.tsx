@@ -5,10 +5,6 @@ import {FilmItemType} from "../../../api/types/FilmsTypes";
 
 
 type CardMovieType = {
-    // name: string
-    // image: string,
-    // description: string
-
     item: PremiereItemType | FilmItemType
 }
 
@@ -16,8 +12,8 @@ export const CardMovie: FC<CardMovieType> = ({
                                                  item
                                              }) => {
     const country = item.countries.map((el, index) => <span key={index}>{el.country + " "}</span>)
-    const genre = item.genres.map((el, index) => <span key={index}>{el.genre + " "}</span>)
 
+    const genre = item.genres.map((el, index) => <span key={index}>{el.genre + " "}</span>)
 
     let rating = 'ratingKinopoisk' in item ? item.ratingKinopoisk : ''
 

@@ -1,15 +1,21 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../utils/hooks/hooks";
 import {selectFilms} from "./selectors";
-import {fetchFilms} from "../../bll/reducers/films/filmsReducer";
+import {fetchFilms, setCategories} from "../../bll/reducers/films/filmsReducer";
 import {FilmItemType} from "../../api/types/FilmsTypes";
 import {CardMovie} from "../../common/components/cardMovie/CardMovie";
 import styled from "styled-components";
+import {selectGenre} from "../categories/selectors";
 
 
 export const Films = () => {
     const dispatch = useAppDispatch()
     const films: FilmItemType[] = useAppSelector(selectFilms)
+    const genres = useAppSelector(state => state.films.genres)
+
+    const selectGenre = (genreId: number) => {
+        dispatch(fetchFilms(genreId))
+    }
 
     useEffect(() => {
         dispatch(fetchFilms())
@@ -27,7 +33,10 @@ export const Films = () => {
             </div>
 
             <div>
-                <div>Жанр</div>
+                <div>{genres.map(el => (
+                    <div onClick={()=>selectGenre(el.id)}>{el.genre}</div>
+                ))}</div>
+
                 <div>Год выхода</div>
                 <div>Страна</div>
             </div>

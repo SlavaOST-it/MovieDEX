@@ -21,6 +21,8 @@ const initialState: FilmsTypes & CategoriesType & SearchType = {
     items: [] as FilmItemType[],
 
     genres: [] as GenresType[],
+    // currentGenre: null,
+
     countries: [] as CountriesType[],
 
     order: 'RATING' as OrderType,
@@ -46,13 +48,17 @@ const slice = createSlice({
         setCategories(state, action: PayloadAction<CategoriesType>) {
             state.genres = action.payload.genres
             state.countries = action.payload.countries
+        },
+
+        setCurrentGenre(state, action: PayloadAction<{currentGenre: null | number}>){
+            state.currentGenre = action.payload.currentGenre
         }
     }
 
 })
 
 export const filmsReducer = slice.reducer
-export const {setFilms, setCategories} = slice.actions
+export const {setFilms, setCategories, setCurrentGenre} = slice.actions
 
 // ===== ThunkCreators ===== //
 export const fetchCategories = (): AppThunkType => async (dispatch, getState) => {
@@ -69,11 +75,11 @@ export const fetchCategories = (): AppThunkType => async (dispatch, getState) =>
 }
 
 
-export const fetchFilms = (): AppThunkType => async (dispatch, getState) => {
+export const fetchFilms = (genreId?: number,  countryId?: number): AppThunkType => async (dispatch, getState) => {
     dispatch(setAppStatusAC({status: AppStatus.LOADING}))
     const {
-        genres = getState().films.genres.find(el => el.id),
-        countries,
+        // genres = getState().films.currentGenre !== null ? getState().films.currentGenre : 1,
+        // countries,
         order,
         type,
         ratingFrom,
@@ -88,8 +94,8 @@ export const fetchFilms = (): AppThunkType => async (dispatch, getState) => {
         await dispatch(fetchCategories())
 
         const res = await filmsAPI.getFilms({
-            // genres,
-            // countries: 1,
+            genres: genreId,
+            countries: countryId,
             order,
             type,
             ratingFrom,

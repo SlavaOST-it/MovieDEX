@@ -19,7 +19,8 @@ export type StyleFilmType = 'FILM' | 'TV_SHOW' | 'TV_SERIES' | 'MINI_SERIES' | '
 export type SearchType = {
     order: OrderType,
     type: StyleFilmType,
-    currentGenre?: null | number,
+    currentGenreId?: number,
+    currentCountryId?: number,
     ratingFrom: number,
     ratingTo: number,
     yearFrom: number,

@@ -14,16 +14,17 @@ import {
     SearchType,
     StyleFilmType
 } from "../../../api/types/CategoriesTypes";
+import {fetchCategories} from "../categoriesReducer/CategoriesReducer";
 
-const initialState: FilmsTypes & CategoriesType & SearchType = {
+const initialState: FilmsTypes & SearchType = {
     total: 0,
     totalPages: 0,
     items: [] as FilmItemType[],
 
-    genres: [] as GenresType[],
-    // currentGenre: null,
-
-    countries: [] as CountriesType[],
+    // genres: [] as GenresType[],
+    // currentGenre: 1,
+    //
+    // countries: [] as CountriesType[],
 
     order: 'RATING' as OrderType,
     type: 'FILM' as StyleFilmType,
@@ -45,41 +46,39 @@ const slice = createSlice({
             state.items = action.payload.items
         },
 
-        setCategories(state, action: PayloadAction<CategoriesType>) {
-            state.genres = action.payload.genres
-            state.countries = action.payload.countries
-        },
+        // setCategories(state, action: PayloadAction<CategoriesType>) {
+        //     // state.genres = action.payload.genres
+        //     // state.countries = action.payload.countries
+        // },
 
-        setCurrentGenre(state, action: PayloadAction<{currentGenre: null | number}>){
-            state.currentGenre = action.payload.currentGenre
-        }
+        // setCurrentGenre(state, action: PayloadAction<{currentGenre: number}>){
+        //     state.currentGenre = action.payload.currentGenre
+        // }
     }
 
 })
 
 export const filmsReducer = slice.reducer
-export const {setFilms, setCategories, setCurrentGenre} = slice.actions
+export const {setFilms} = slice.actions
 
 // ===== ThunkCreators ===== //
-export const fetchCategories = (): AppThunkType => async (dispatch, getState) => {
-    dispatch(setAppStatusAC({status: AppStatus.LOADING}))
+// export const fetchCategories = (): AppThunkType => async (dispatch, getState) => {
+//     dispatch(setAppStatusAC({status: AppStatus.LOADING}))
+//
+//     try {
+//         const res = await filmsAPI.getCategories()
+//         // dispatch(setCategories({genres: res.data.genres, countries: res.data.countries}))
+//         dispatch(setAppStatusAC({status: AppStatus.SUCCEEDED}))
+//     } catch (e) {
+//         baseErrorHandler(e as Error | AxiosError, dispatch)
+//         dispatch(setAppStatusAC({status: AppStatus.FAILED}))
+//     }
+// }
 
-    try {
-        const res = await filmsAPI.getCategories()
-        dispatch(setCategories({genres: res.data.genres, countries: res.data.countries}))
-        dispatch(setAppStatusAC({status: AppStatus.SUCCEEDED}))
-    } catch (e) {
-        baseErrorHandler(e as Error | AxiosError, dispatch)
-        dispatch(setAppStatusAC({status: AppStatus.FAILED}))
-    }
-}
 
-
-export const fetchFilms = (genreId?: number,  countryId?: number): AppThunkType => async (dispatch, getState) => {
+export const fetchFilms = (): AppThunkType => async (dispatch, getState) => {
     dispatch(setAppStatusAC({status: AppStatus.LOADING}))
     const {
-        // genres = getState().films.currentGenre !== null ? getState().films.currentGenre : 1,
-        // countries,
         order,
         type,
         ratingFrom,
@@ -90,12 +89,15 @@ export const fetchFilms = (genreId?: number,  countryId?: number): AppThunkType 
         currentPage,
     } = getState().films
 
+    const currentGenreId = getState().categories.currentGenreId
+    const currentCountryId = getState().categories.currentCountryId
+
     try {
-        await dispatch(fetchCategories())
+        dispatch(fetchCategories())
 
         const res = await filmsAPI.getFilms({
-            genres: genreId,
-            countries: countryId,
+            genres: currentGenreId,
+            countries: currentCountryId,
             order,
             type,
             ratingFrom,
@@ -105,8 +107,8 @@ export const fetchFilms = (genreId?: number,  countryId?: number): AppThunkType 
             keyword,
             currentPage,
         })
-        await dispatch(setFilms({total: res.data.total, totalPages: res.data.totalPages, items: res.data.items}))
-        await dispatch(setAppStatusAC({status: AppStatus.SUCCEEDED}))
+        dispatch(setFilms({total: res.data.total, totalPages: res.data.totalPages, items: res.data.items}))
+        dispatch(setAppStatusAC({status: AppStatus.SUCCEEDED}))
     } catch (e) {
         baseErrorHandler(e as Error | AxiosError, dispatch)
         dispatch(setAppStatusAC({status: AppStatus.FAILED}))

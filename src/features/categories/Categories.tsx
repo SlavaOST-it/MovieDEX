@@ -6,8 +6,8 @@ import {categoriesSelectors} from "./index";
 
 export const Categories = () => {
     const dispatch = useAppDispatch()
-    const genres = useAppSelector(categoriesSelectors.selectGenre)
-    const countries = useAppSelector(categoriesSelectors.selectCountry)
+    // const genres = useAppSelector(categoriesSelectors.selectGenre)
+    // const countries = useAppSelector(categoriesSelectors.selectCountry)
 
     useEffect(() => {
         // dispatch(fetchCategories())
@@ -15,13 +15,13 @@ export const Categories = () => {
 
     return (
         <div>
-            {genres.map(el => (
-                <div key={el.id}>{el.genre}</div>
-            ))}
+            {/*{genres.map(el => (*/}
+            {/*    <div key={el.id}>{el.genre}</div>*/}
+            {/*))}*/}
 
-            {countries.map(el => (
-                <div key={el.id}>{el.country}</div>
-            ))}
+            {/*{countries.map(el => (*/}
+            {/*    <div key={el.id}>{el.country}</div>*/}
+            {/*))}*/}
         </div>
     );
 };

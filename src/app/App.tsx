@@ -11,10 +11,6 @@ import {useAppSelector} from "../utils/hooks/hooks";
 import {appSelectors} from "./index";
 import {AppStatus} from "../common/types/commonTypes";
 
-// window.addEventListener('scroll', e => {
-//
-//     document.body.style.cssText = `--scrollTop: ${this.scrollY}px`
-// })
 
 export function App() {
     const {theme, setSwitchTheme} = useAppSwitchTheme();
@@ -44,10 +40,10 @@ export function App() {
                 {appStatus === AppStatus.START
                     ? <StartPage moveX={moveX} moveY={moveY}/>
                     : <WrapperApp>
-                        <Header theme={theme} setTheme={setSwitchTheme}/>
+                        <Header/>
                         <ContainerApp>
                             <NavBar/>
-                            <Main/>
+                            <Main theme={theme} setTheme={setSwitchTheme}/>
                         </ContainerApp>
                     </WrapperApp>
                 }

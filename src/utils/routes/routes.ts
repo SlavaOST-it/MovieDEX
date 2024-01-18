@@ -3,7 +3,7 @@ export const PATH = {
     topFilms: '/topFilms',
     premieres: '/premieres',
     films: '/films',
-    categories: '/categoriesReducer',
+    categories: '/categories',
     settings: '/settings',
     page404: '/404',
 }

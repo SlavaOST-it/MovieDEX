@@ -6,14 +6,12 @@ import {ThemeType} from "../../types/commonTypes";
 
 
 type SearchButtonType = {
-    isOpen: boolean
     onClick: () => void
 }
 
-export const ButtonSearch: FC<SearchButtonType> = ({isOpen, onClick}) => {
-
-
-    return (
+export const ButtonSearch: FC<SearchButtonType> = ({onClick}) => {
+    
+   return (
         <div>
             <Button onClick={onClick}>
                 <LogoSearch>

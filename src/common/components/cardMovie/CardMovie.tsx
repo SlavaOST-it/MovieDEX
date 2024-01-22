@@ -21,9 +21,7 @@ export const CardMovie: FC<CardMovieType> = ({
     return (
         <CardStyle>
             <ImageCard src={item.posterUrlPreview} alt={''}/>
-            <div>{item.nameRu}</div>
-
-
+            <TitleCard>{item.nameRu}</TitleCard>
             <div>{rating}</div>
             <div>{genre}</div>
             <div>{item.year}</div>
@@ -34,15 +32,21 @@ export const CardMovie: FC<CardMovieType> = ({
 
 
 export const ImageCard = styled.img`
-  width: 200px;
-  height: 300px;
-  //border-radius: 15px;
-  //border-radius: 5px;
+    min-width: 50px;
+    min-height: 150px;
+    max-width: 200px;
+    max-height: 300px;
+    //border-radius: 15px;
+    //border-radius: 5px;
+`
+
+export const TitleCard = styled.h3`
+ font-family: Roboto;
 `
 
 export const CardStyle = styled.div`
-  max-width: 250px;
-  max-height: 550px;
+    max-width: 250px;
+    max-height: 550px;
 
-  border-radius: 15px;
+    border-radius: 15px;
 `

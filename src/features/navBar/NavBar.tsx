@@ -18,11 +18,11 @@ const navLinks = [
     {id: 3, path: PATH.topFilms, nameLink: "Топ фильмов", logoLink: `${sprite}#awards`},
     {id: 4, path: PATH.films, nameLink: "Фильмы", logoLink: `${sprite}#awards`},
     {id: 5, path: PATH.categories, nameLink: "Категории", logoLink: `${sprite}#categories`},
+    {id: 6, path: PATH.settings, nameLink: "Настройки", logoLink: `${sprite}#categories`},
 ]
 
 export const NavBar = () => {
     const dispatch = useAppDispatch()
-
 
     const selectStartPage = () => {
         dispatch(setAppStatusAC({status: AppStatus.START}))
@@ -65,59 +65,62 @@ export const NavBar = () => {
 };
 
 
-export const NameLink = styled.span`
-  font-size: 16px;
-  font-weight: 600;
-  color: ${props => props.theme.colors.background};
+export const NameLink = styled.span<{ theme: ThemeType }>`
+    color: ${props => props.theme.colors.secondary};
+    font-size: 18px;
+    transition: ${props => props.theme.transition};
 `
 
 export const LogoLink = styled.svg<{ theme: ThemeType }>`
-  width: 20px;
-  height: 20px;
-  fill: ${props => props.theme.colors.background};
-  transition: .3s;
+    width: 20px;
+    height: 20px;
+    fill: ${props => props.theme.colors.secondary};
+    transition: ${props => props.theme.transition};
 
-  margin-right: 8px;
+    margin-right: 8px;
 `
 
 export const NavigateLink = styled(NavLink)<{ theme: ThemeType }>`
-  display: flex;
-  padding: 12px 0 12px 12px;
+    display: flex;
+    align-items: center;
 
-  &.active, &:hover {
-    background-color: ${props => props.theme.colors.background};
-    border-radius: 30px 0 0 30px;
+    padding: 12px 0 12px 40px;
+    border-left: ${props => props.theme.colors.background.color_1} 4px solid;
+    transition: ${props => props.theme.transition};
 
-    &.active ${NameLink},
-    &:hover ${NameLink} {
-      color: ${props => props.theme.colors.primary};
+    &.active, &:hover {
+        background-color: ${props => props.theme.colors.background.color_2};
+        border-left: ${props => props.theme.colors.accent} 4px solid;
+        transition: ${props => props.theme.transition};
+
+        &.active ${NameLink},
+        &:hover ${NameLink} {
+            color: ${props => props.theme.colors.primary};
+            transition: ${props => props.theme.transition};
+        }
+
+        &.active ${LogoLink},
+        &:hover ${LogoLink} {
+            fill: ${props => props.theme.colors.primary};
+            transition: ${props => props.theme.transition};
+        }
     }
-
-    &.active ${LogoLink},
-    &:hover ${LogoLink}{
-      fill: ${props => props.theme.colors.primary};;
-    }
-  }
 
 `
 
 export const ListItem = styled.li`
-  min-width: 100%;
 `
 
 export const Ul = styled.ul`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-  padding: 20px 0 20px 20px;
-  gap: 6px;
+    padding: 50px 0;
+    border-bottom: ${props => props.theme.colors.background.color_2} 1px solid;
 `
 
 export const NavWrapper = styled.nav<{ theme: ThemeType }>`
-  min-width: 200px;
-  min-height: 100vh;
-
-  background-color: ${props => props.theme.colors.black_color};
-  margin-right: 30px;
+    min-width: 240px;
+    border-top: ${props => props.theme.colors.background.color_2} 1px solid;
 `

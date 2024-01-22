@@ -4,14 +4,17 @@ const mobile = "(max-width: 576px)"
 
 
 export const mediaQueries = {
-    desktop: desktop,
+    desktop: desktop ,
     tablet: tablet,
     mobile: mobile
 }
 
 export const lightTheme = {
     colors: {
-        background: "#ffffff",
+        background: {
+            color_1: "#8e9eab",
+            color_2: "#eef2f3",
+        },
 
         primary: "#000000",
         secondary: "#969696",
@@ -19,19 +22,25 @@ export const lightTheme = {
         black_color: "#252425",
     },
 
-    media : mediaQueries
+    media : mediaQueries,
+    transition: ".2s ease-in-out"
 }
 
 export const darkTheme = {
     colors: {
-        background: "#252525",
-
+        background: {
+            color_1: "#1E2931FF",
+            color_2: "#394E5AFF",
+        },
         primary: "#ffffff",
-        secondary: "#969696",
-        accent: "#da0018",
+        secondary: "#666d73",
+        accent: "#1f9276",
     },
 
-    media : mediaQueries
+    media : mediaQueries,
+    transition: ".2s ease-in-out",
+
+    box_shadow: "1px 2px 5px 5px rgba(0, 0, 0, 0.14)",
 }
 
 

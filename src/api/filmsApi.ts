@@ -1,5 +1,4 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {baseUrl} from "./apiConfig/instance";
 import {PremieresFilmsType} from "./types/PremieresFilmsType";
 import {TopFilmsType} from "./types/TopFilmsTypes";
 
@@ -7,10 +6,10 @@ import {TopFilmsType} from "./types/TopFilmsTypes";
 export const filmsAPI = createApi({
     reducerPath: "filmsAPI",
     baseQuery: fetchBaseQuery({
-        baseUrl,
+        baseUrl: process.env.REACT_APP_BASE_URL,
         method: 'GET',
         headers: {
-            'X-API-KEY': 'c2cb13de-6ef9-400f-91ac-2bdccec3e363',
+            'X-API-KEY': process.env.REACT_APP_API_KEY || '',
             'Content-Type': 'application/json',
         }
     }),

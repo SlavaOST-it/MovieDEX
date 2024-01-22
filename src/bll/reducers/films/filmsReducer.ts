@@ -4,7 +4,7 @@ import {AppThunkType} from "../../store/store";
 import {setAppStatusAC} from "../appReducer/appReducer";
 import {AppStatus} from "../../../common/types/commonTypes";
 import {baseErrorHandler} from "../../../utils/error-utils/error-utils";
-import {filmsAPI} from "../../../api/filmsAPI";
+import {filmsAPIold} from "../../../api/filmsAPIold";
 import {FilmItemType, FilmsTypes} from "../../../api/types/FilmsTypes";
 import {
     CategoriesType,
@@ -95,7 +95,7 @@ export const fetchFilms = (): AppThunkType => async (dispatch, getState) => {
     try {
         dispatch(fetchCategories())
 
-        const res = await filmsAPI.getFilms({
+        const res = await filmsAPIold.getFilms({
             genres: currentGenreId,
             countries: currentCountryId,
             order,

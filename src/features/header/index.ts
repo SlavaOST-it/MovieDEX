@@ -1,5 +1,5 @@
 import * as premieresSelectors from "./selectors"
-import {ToggleThemeBtn} from "./toggleThemeBtn/ToggleThemeBtn";
+import {ToggleThemeBtn} from "../settings/toggleThemeBtn/ToggleThemeBtn";
 import {Logo} from "./logo/Logo";
 
 

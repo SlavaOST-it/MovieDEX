@@ -1,12 +1,12 @@
 import {instance} from "./apiConfig/instance";
 
-import {TopFilmsType} from "./types/TopFilmsTypes";
-import {CategoriesType, CountriesType, SearchType} from "./types/CategoriesTypes";
-import {PremieresFilmsType} from "./types/PremieresFilmsType";
 import {FilmsTypes} from "./types/FilmsTypes";
+import {TopFilmsType} from "./types/TopFilmsTypes";
+import {PremieresFilmsType} from "./types/PremieresFilmsType";
+import {CategoriesType, SearchType} from "./types/CategoriesTypes";
 
 
-export const filmsAPI = {
+export const filmsAPIold = {
     getTopFilms(currentPage: number) {
         return instance<TopFilmsType>(`films/top?page=${currentPage}`, {});
     },

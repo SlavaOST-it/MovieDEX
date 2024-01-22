@@ -9,12 +9,12 @@ type InputSearchFilmType = {
 
 export const InputSearchFilm: FC<InputSearchFilmType> = ({onClick}) => {
     return (
-        <div>
+        <ContainerInputSearch>
             <Input
                 placeholder={'Поиск...'}
             />
             <ButtonClose onClick={onClick}>X</ButtonClose>
-        </div>
+        </ContainerInputSearch>
 
     );
 };
@@ -24,37 +24,42 @@ export const Input = styled.input <{ theme: ThemeType }>`
     width: 200px;
 
     color: ${props => props.theme.colors.primary};
-    
+
     border: ${props => props.theme.colors.accent} 6px solid;
     border-radius: 12px;
 
     background-color: ${props => props.theme.colors.background.color_2};;
 
     padding-left: 6px;
-    margin-right: 12px;
+    margin-right: 2px;
 
     transition: ${props => props.theme.transition};
 
     &:focus {
         outline: none;
-        box-shadow: -6px 3px 8px 4px rgba(0, 0, 0, 0.5);
+        box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.5);
         transition: ${props => props.theme.transition};
     }
 `
 
 export const ButtonClose = styled.button`
-    //width: 40px;
-    //height: 40px;
+    padding: 8px;
 
-    color: ${props => props.theme.colors.primary};
-    
+    color: #a2a2a2;
+    font-size: 20px;
     //border-radius: 12px;
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
     transition: ${props => props.theme.transition};
 
     &:hover {
-        box-shadow: 2px 3px 6px 8px rgba(0, 0, 0, 0.2);
+        color: ${props => props.theme.colors.primary};
+        text-shadow: 6px 3px 4px rgba(0, 0, 0, 0.8);
         transition: ${props => props.theme.transition};
     }
+`
+
+export const ContainerInputSearch = styled.div`
+    display: flex;
+    align-items: center;
 `

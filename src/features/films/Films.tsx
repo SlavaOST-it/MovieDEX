@@ -9,6 +9,7 @@ import {SortValue} from "../../common/components/sortValue/SortValue";
 import {CountriesType, GenresType} from "../../api/types/CategoriesTypes";
 import {setCurrentCountry, setCurrentGenre} from "../../bll/reducers/categoriesReducer/CategoriesReducer";
 import {useSearchParams} from 'react-router-dom';
+import {Loader} from "../../common/components/loader/Loader";
 
 
 export const Films = () => {
@@ -52,6 +53,10 @@ export const Films = () => {
 
         dispatch(fetchFilms())
     }, [dispatch, currentGenre, currentCountry])
+
+    // if(isLoading){
+    //     return <Loader/>
+    // }
 
     return (
         <FilmsWrapper>

@@ -1,70 +1,84 @@
-import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from "../../utils/hooks/hooks";
-import {premieresSelectors} from "./index";
-import {fetchPremieresFilms} from "../../bll/reducers/premieresFilmsReducer/premieresFilmsReducer";
+import React, {useState} from 'react';
 import {useCurrentMonthAndYear} from "../../utils/hooks/currentDate";
 import {CardMovie} from "../../common/components/cardMovie/CardMovie";
 import styled from "styled-components";
 import {ThemeType} from "../../common/types/commonTypes";
-import {PremiereItemType} from "../../api/types/PremieresFilmsType";
+import {useGetPremieresFilmsQuery} from '../../api/filmsApi';
+import {Loader} from "../../common/components/loader/Loader";
+import {Pagination} from "../../common/components/pagination/Pagination";
 
 
 export const PremieresPage = () => {
-    const dispatch = useAppDispatch()
+    const {currentYear, currentMonth} = useCurrentMonthAndYear()
 
-    const premieresFilms: PremiereItemType[] = useAppSelector(premieresSelectors.selectPremieresFilms)
-    const currentYear = useCurrentMonthAndYear().currentYear
-    const currentMonth = useCurrentMonthAndYear().currentMonth
+    const {data, isLoading} = useGetPremieresFilmsQuery({year: currentYear, month: currentMonth});
 
-    useEffect(() => {
-        dispatch(fetchPremieresFilms(currentYear, currentMonth))
-    }, [dispatch])
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 8;
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentItems = data?.items.slice(startIndex, endIndex);
+
+    const totalItemsCount = data?.total ? (data.total / itemsPerPage) : 0
+
+    const handlePageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
+    };
+
+    console.log(data?.total)
+    if (isLoading) {
+        return <Loader/>
+    }
 
     return (
         <PremieresWrapper>
             <Title>Премьеры <span>фильмов</span></Title>
             <FilmsBlock>
-                {premieresFilms.map((el, index) => (
+                {currentItems && currentItems.map((el, index) => (
+
                     <CardMovie key={index}
                                item={el}
                     />
                 ))}
+
             </FilmsBlock>
+
+            <Pagination
+                currentPage={currentPage}
+                onPageChanges={handlePageChange}
+                totalItemsCount={totalItemsCount}
+            />
         </PremieresWrapper>
     );
 };
 
 export const FilmsBlock = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
-  gap: 30px;
+    gap: 30px;
 `
 
 export const Title = styled.h2<{ theme: ThemeType }>`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 62px;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: -0.04em;
-  color: #000;
-  margin: 0 auto -3px auto;
-  width: 100%;
-  line-height: 100%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
 
-  padding: 50px 0;
+    width: 100%;
+    line-height: 100%;
 
-  span {
-    color: ${props => props.theme.colors.accent};
-  }
+    padding: 4px 0 100px 0;
+
+    span {
+        color: ${props => props.theme.colors.accent};
+    }
 `
 
 export const PremieresWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
 `

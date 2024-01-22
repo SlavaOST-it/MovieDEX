@@ -10,12 +10,13 @@ import {NavBar} from "../features/navBar/NavBar";
 import {useAppSelector} from "../utils/hooks/hooks";
 import {appSelectors} from "./index";
 import {AppStatus} from "../common/types/commonTypes";
+import {Loader} from "../common/components/loader/Loader";
 
 
 export function App() {
-    const {theme, setSwitchTheme} = useAppSwitchTheme();
-
     const appStatus = useAppSelector(appSelectors.appStatus);
+
+    const {theme, setSwitchTheme} = useAppSwitchTheme();
 
     const [moveX, setMoveX] = useState(0);
     const [moveY, setMoveY] = useState(0);
@@ -53,10 +54,10 @@ export function App() {
 }
 
 export const WrapperApp = styled.div`
-  max-width: 1700px;
-  margin: 0 auto;
+    max-width: 1700px;
+    margin: 0 auto;
 `
 
 export const ContainerApp = styled.div`
-  display: flex;
+    display: flex;
 `

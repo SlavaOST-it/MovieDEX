@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../utils/hooks/hooks";
 // import {fetchCategories} from "../../bll/reducers/categoriesReducer/CategoriesReducer";
 import {categoriesSelectors} from "./index";
+import {Loader} from "../../common/components/loader/Loader";
 
 
 export const Categories = () => {
@@ -12,6 +13,10 @@ export const Categories = () => {
     useEffect(() => {
         // dispatch(fetchCategories())
     }, [dispatch])
+
+    // if(isLoading){
+    //     return <Loader/>
+    // }
 
     return (
         <div>

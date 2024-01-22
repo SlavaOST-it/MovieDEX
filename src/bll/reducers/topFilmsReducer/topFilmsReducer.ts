@@ -3,7 +3,7 @@ import {AxiosError} from "axios";
 
 import {AppThunkType} from "../../store/store";
 
-import {filmsAPI} from "../../../api/filmsAPI";
+import {filmsAPIold} from "../../../api/filmsAPIold";
 import {setAppStatusAC} from "../appReducer/appReducer";
 import {AppStatus} from "../../../common/types/commonTypes";
 import {FilmType, TopFilmsType} from "../../../api/types/TopFilmsTypes";
@@ -37,18 +37,18 @@ export const {setTopFilms, setCurrentPage} = slice.actions
 
 
 // ===== ThunkCreators ===== //
-export const fetchTopFilms = (): AppThunkType => async (dispatch, getState) => {
-    dispatch(setAppStatusAC({status: AppStatus.LOADING}))
-
-    const {
-        currentPage
-    } = getState().topFilms
-
-    try {
-        const res = await filmsAPI.getTopFilms(currentPage)
-        dispatch(setTopFilms({pagesCount: res.data.pagesCount, films: res.data.films}))
-    } catch (e) {
-        baseErrorHandler(e as Error | AxiosError, dispatch)
-        dispatch(setAppStatusAC({status: AppStatus.FAILED}))
-    }
-}
+// export const fetchTopFilms = (): AppThunkType => async (dispatch, getState) => {
+//     dispatch(setAppStatusAC({status: AppStatus.LOADING}))
+//
+//     const {
+//         currentPage
+//     } = getState().topFilms
+//
+//     try {
+//         const res = await filmsAPIold.getTopFilms(currentPage)
+//         dispatch(setTopFilms({pagesCount: res.data.pagesCount, films: res.data.films}))
+//     } catch (e) {
+//         baseErrorHandler(e as Error | AxiosError, dispatch)
+//         dispatch(setAppStatusAC({status: AppStatus.FAILED}))
+//     }
+// }

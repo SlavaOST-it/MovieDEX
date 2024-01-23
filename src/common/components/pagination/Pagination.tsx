@@ -3,7 +3,6 @@ import {CurrentPage, NextPrevPage, PaginationWrapper} from "./Pagination.styled"
 
 
 type PaginationType = {
-    type?: 'users' | 'friends'
     totalItemsCount: number,
     pageSize?: number,
     onPageChanges: (pageNumber: number) => void,
@@ -12,9 +11,8 @@ type PaginationType = {
 }
 
 export const Pagination: FC<PaginationType> = ({
-                                                   type,
                                                    totalItemsCount,
-                                                   pageSize = 1 ,
+                                                   pageSize= 1,
                                                    onPageChanges,
                                                    currentPage,
                                                    portionSize = 5

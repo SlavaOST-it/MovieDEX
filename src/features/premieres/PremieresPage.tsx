@@ -6,6 +6,7 @@ import {ThemeType} from "../../common/types/commonTypes";
 import {useGetPremieresFilmsQuery} from '../../api/filmsApi';
 import {Loader} from "../../common/components/loader/Loader";
 import {Pagination} from "../../common/components/pagination/Pagination";
+import {TitlePage} from "../../common/styles/TitlePage.styled";
 
 
 export const PremieresPage = () => {
@@ -32,7 +33,7 @@ export const PremieresPage = () => {
 
     return (
         <PremieresWrapper>
-            <Title>Премьеры <span>фильмов</span></Title>
+            <TitlePage>Премьеры <span>фильмов</span></TitlePage>
             <FilmsBlock>
                 {currentItems && currentItems.map((el, index) => (
 
@@ -58,21 +59,6 @@ export const FilmsBlock = styled.div`
     justify-content: space-between;
 
     gap: 30px;
-`
-
-export const Title = styled.h2<{ theme: ThemeType }>`
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-
-    width: 100%;
-    line-height: 100%;
-
-    padding: 4px 0 100px 0;
-
-    span {
-        color: ${props => props.theme.colors.accent};
-    }
 `
 
 export const PremieresWrapper = styled.div`

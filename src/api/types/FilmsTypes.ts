@@ -1,5 +1,11 @@
 import {StyleFilmType} from "./CategoriesTypes"
 
+export type FilmsTypes = {
+    total: number,
+    totalPages: number,
+    items: FilmItemType []
+}
+
 export type FilmItemType = {
     kinopoiskId: number,
     imdbId: string,
@@ -24,8 +30,3 @@ export type FilmItemType = {
     posterUrlPreview: string
 }
 
-export type FilmsTypes = {
-    total: number,
-    totalPages: number,
-    items: FilmItemType []
-}

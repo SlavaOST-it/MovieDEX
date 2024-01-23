@@ -1,26 +1,18 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AxiosError} from "axios";
-
-import {AppThunkType} from "../../store/store";
-
-import {filmsAPIold} from "../../../api/filmsAPIold";
-import {setAppStatusAC} from "../appReducer/appReducer";
-import {AppStatus} from "../../../common/types/commonTypes";
-import {FilmType, TopFilmsType} from "../../../api/types/TopFilmsTypes";
-import {baseErrorHandler} from "../../../utils/error-utils/error-utils";
 
 
-const initialState: TopFilmsType = {
+
+const initialState: any = {
     pagesCount: 0,
     currentPage: 1,
-    films: [] as FilmType[]
+    films: []
 }
 
 const slice = createSlice({
     name: 'topFilms',
     initialState: initialState,
     reducers: {
-        setTopFilms(state, action: PayloadAction<{ pagesCount: number, films: FilmType[] }>) {
+        setTopFilms(state, action: PayloadAction<{ pagesCount: number, films: [] }>) {
             state.pagesCount = action.payload.pagesCount;
             state.films = action.payload.films
         },

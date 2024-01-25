@@ -21,3 +21,10 @@ export const LoaderSpan = styled.span<{theme: ThemeType}>`
         transform: rotate(360deg);
     }
 `
+
+export const LoaderWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+`

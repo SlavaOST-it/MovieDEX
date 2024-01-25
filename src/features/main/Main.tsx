@@ -33,4 +33,8 @@ export const Main: FC<HeaderType> = ({theme, setTheme}) => {
 
 export const MainWrapper = styled.div`
     margin: 0 50px 0 100px;
+    min-width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `

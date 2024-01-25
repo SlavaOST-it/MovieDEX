@@ -40,7 +40,7 @@ export const darkTheme = {
     media : mediaQueries,
     transition: ".2s ease-in-out",
 
-    box_shadow: "1px 2px 5px 5px rgba(0, 0, 0, 0.14)",
+    box_shadow: "1px 14px 20px 6px rgba(0, 0, 0, 0.4)",
 }
 
 

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useGetTopFilmsQuery} from '../../api/filmsApi';
 import {Loader} from "../../common/components/loader/Loader";
 import {Pagination} from "../../common/components/pagination/Pagination";
-import {TitlePage} from "../../common/styles/TitlePage.styled";
+import {FilmsBlock, Wrapper, TitlePage} from "../../common/styles/СommonStyles.styled";
 import {CardMovie} from "../../common/components/cardMovie/CardMovie";
 
 
@@ -13,7 +13,6 @@ export const TopFilmsPage = () => {
 
     const totalPageCount = data?.totalPages ? data.totalPages : 0
 
-    console.log(data?.total)
     const handlePageChange = (pageNumber: number) => {
         setCurrentPage(pageNumber);
     };
@@ -23,21 +22,23 @@ export const TopFilmsPage = () => {
     }
 
     return (
-        <div>
+        <Wrapper>
             <TitlePage>Топ <span> фильмов </span></TitlePage>
-            <div>
+            <FilmsBlock>
                 {data?.items.map((el, index) => (
                     <CardMovie key={index}
                                item={el}
                     />
                 ))}
-            </div>
+            </FilmsBlock>
 
             <Pagination
                 totalItemsCount={totalPageCount}
                 onPageChanges={handlePageChange}
                 currentPage={currentPage}
             />
-        </div>
+        </Wrapper>
     );
 };
+
+

@@ -99,7 +99,7 @@ export const Films = () => {
     );
 };
 
-export const FilmsBlock = styled.div`
+export const FilmsBlock = styled.div` //переименовать или экспортировать из commonStyles
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

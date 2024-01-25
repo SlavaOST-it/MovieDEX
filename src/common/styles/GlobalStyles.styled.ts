@@ -42,8 +42,8 @@ export const GlobalStyled = createGlobalStyle<{ theme: any }>`
         font-size: 16px;
         font-weight: 400;
         line-height: 1.7;
-            letter-spacing: 0.2px;
-            
+        letter-spacing: .2px;
+
         background: ${props => props.theme.colors.background.color_1};
         background: linear-gradient(90deg,
         ${props => props.theme.colors.background.color_1} 45%,

@@ -23,8 +23,7 @@ export const filmsAPI = createApi({
         }),
 
         getPremieresFilms: build.query<PremieresFilmsType, { year: number, month: string }>({
-            query: (args) => {
-                const {year, month} = args;
+            query: ({year, month}) => {
                 return {
                     method: 'GET',
                     url: `films/premieres`,

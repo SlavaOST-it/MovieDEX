@@ -53,23 +53,33 @@ export const Rating = styled.div<{ theme: ThemeType }>`
 `
 
 export const ImageCard = styled.img <{ theme: ThemeType }>`
-    min-width: 50px;
-    min-height: 150px;
-    max-width: 200px;
-    max-height: 300px;
+    width: 200px;
+    height: 300px;
 
+    margin-bottom: 8px;
     box-shadow: ${props => props.theme.box_shadow};
+    transition: ${props => props.theme.transition};
 `
 
 export const TitleCard = styled.h3`
     font-family: Roboto;
 `
 
-export const CardStyle = styled.div`
+export const CardStyle = styled.div<{ theme: ThemeType }>`
     max-width: 200px;
     max-height: 550px;
 
     border-radius: 15px;
 
-    position: relative
+    position: relative;
+    cursor: pointer;
+    transition: ${props => props.theme.transition};
+
+    &:hover {
+        ${ImageCard} {
+            box-shadow: 1px 8px 12px 10px rgba(0, 0, 0, 0.8);
+            transition: ${props => props.theme.transition};
+            transform: scale(1.04)
+        }
+    }
 `

@@ -38,7 +38,8 @@ export const darkTheme = {
     },
 
     media : mediaQueries,
-    transition: ".2s ease-in-out",
+
+    transition: "all .2s ease-in-out",
 
     box_shadow: "1px 14px 20px 6px rgba(0, 0, 0, 0.4)",
 }

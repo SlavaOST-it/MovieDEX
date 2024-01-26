@@ -40,5 +40,3 @@ export const TopFilmsPage = () => {
         </Wrapper>
     );
 };
-
-

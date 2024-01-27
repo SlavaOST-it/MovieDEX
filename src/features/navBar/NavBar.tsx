@@ -16,9 +16,10 @@ import sprite from "../../assets/icons/sprite.svg"
 const navLinks = [
     {id: 2, path: PATH.premieres, nameLink: "Премьеры", logoLink: `${sprite}#fireworks`},
     {id: 3, path: PATH.topFilms, nameLink: "Топ фильмов", logoLink: `${sprite}#awards`},
-    {id: 4, path: PATH.films, nameLink: "Фильмы", logoLink: `${sprite}#awards`},
-    {id: 5, path: PATH.categories, nameLink: "Категории", logoLink: `${sprite}#categories`},
-    {id: 6, path: PATH.settings, nameLink: "Настройки", logoLink: `${sprite}#categories`},
+    {id: 4, path: PATH.catalog, nameLink: "Каталог", logoLink: `${sprite}#awards`},
+    {id: 5, path: PATH.serials, nameLink: "Сериалы", logoLink: `${sprite}#awards`},
+    {id: 6, path: PATH.categories, nameLink: "Категории", logoLink: `${sprite}#categories`},
+    {id: 7, path: PATH.settings, nameLink: "Настройки", logoLink: `${sprite}#categories`},
 ]
 
 export const NavBar = () => {

@@ -9,16 +9,13 @@ import {categoriesReducer} from "../reducers/categoriesReducer/CategoriesReducer
 
 import {FilmsActionTypes} from "../reducers/films/FilmsActionType";
 import {AppReducerActionTypes} from "../reducers/appReducer/appReducer-types";
-// import {TopFilmsActionTypes} from "../reducers/topFilmsReducer/TopFilmsActionType";
 import {CategoriesActionTypes} from "../reducers/categoriesReducer/CategoriesActionType";
 
 
 const rootReducer = combineReducers({
     app: appReducer,
     films: filmsReducer,
-    // topFilms: topFilmsReducer,
     categories: categoriesReducer,
-    // premieresFilms: premieresFilmsReducer,
 
     // RTK Query
     [filmsAPI.reducerPath]: filmsAPI.reducer,
@@ -27,9 +24,7 @@ const rootReducer = combineReducers({
 type ReduxActionType =
     AppReducerActionTypes
     | FilmsActionTypes
-    // | TopFilmsActionTypes
     | CategoriesActionTypes
-// | PremieresFilmsActionTypes
 
 
 export const store = configureStore({

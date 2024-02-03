@@ -7,17 +7,17 @@ import {baseErrorHandler} from "../../../utils/error-utils/error-utils";
 import {filmsAPIold} from "../../../api/filmsAPIold";
 import {
     CategoriesType,
-    CountriesType,
-    GenresType,
+    CountryType,
+    GenreType,
     OrderType,
-    SearchType,
+    SearchTypeOLD,
     StyleFilmType
 } from "../../../api/types/CategoriesTypes";
 
-const initialState: CategoriesType & SearchType = {
+const initialState: CategoriesType & SearchTypeOLD = {
 
-    genres: [] as GenresType[],
-    countries: [] as CountriesType[],
+    genres: [] as GenreType[],
+    countries: [] as CountryType[],
 
     currentGenreId: 1,
     currentCountryId: 1,

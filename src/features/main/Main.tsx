@@ -5,7 +5,6 @@ import styled from "styled-components";
 import {PATH} from "../../utils/routes/routes";
 
 import {Catalog} from "../catalog/Catalog";
-import {Categories} from "../categories/Categories";
 import {TopFilmsPage} from "../topFilms/TopFilmsPage";
 import {PremieresPage} from "../premieres/PremieresPage";
 import {SettingsPage} from "../settings/SettingsPage";
@@ -25,7 +24,6 @@ export const Main: FC<HeaderType> = ({theme, setTheme}) => {
                 <Route path={PATH.topFilms} element={<TopFilmsPage/>}/>
                 <Route path={PATH.catalog} element={<Catalog/>}/>
                 <Route path={PATH.serials} element={<SerialsPage/>}/>
-                <Route path={PATH.categories} element={<Categories/>}/>
                 <Route path={PATH.settings} element={<SettingsPage theme={theme} setTheme={setTheme}/>}/>
             </Routes>
         </MainWrapper>

@@ -3,7 +3,7 @@ import {StyleFilmType} from "./CategoriesTypes";
 // export type TopFilmsType = {
 //     pagesCount: number,
 //     currentPage: number,
-//     films: FilmType[]
+//     catalog: FilmType[]
 // }
 //
 // export type FilmType = {

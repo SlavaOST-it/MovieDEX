@@ -8,15 +8,15 @@ import {filmsAPIold} from "../../../api/filmsAPIold";
 import {FilmItemType, FilmsTypes} from "../../../api/types/FilmsTypes";
 import {
     CategoriesType,
-    CountriesType,
-    GenresType,
+    CountryType,
+    GenreType,
     OrderType,
-    SearchType,
+    SearchTypeOLD,
     StyleFilmType
 } from "../../../api/types/CategoriesTypes";
 import {fetchCategories} from "../categoriesReducer/CategoriesReducer";
 
-const initialState: FilmsTypes & SearchType = {
+const initialState: FilmsTypes & SearchTypeOLD = {
     total: 0,
     totalPages: 0,
     items: [] as FilmItemType[],

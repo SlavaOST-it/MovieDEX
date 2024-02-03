@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {PremieresFilmsType} from "./types/PremieresFilmsType";
 import {FilmsTypes} from "./types/FilmsTypes";
 
-import {CategoriesType} from "./types/CategoriesTypes";
+import {CategoriesType, SearchType} from "./types/CategoriesTypes";
 
 
 export const filmsAPI = createApi({
@@ -15,6 +15,7 @@ export const filmsAPI = createApi({
             'Content-Type': 'application/json',
         }
     }),
+    tagTypes: ['filter'],
     endpoints: (build) => ({
         getPremieresFilms: build.query<PremieresFilmsType, { year: number, month: string }>({
             query: ({year, month}) => {
@@ -37,16 +38,17 @@ export const filmsAPI = createApi({
             }
         }),
 
-        getSerials: build.query<FilmsTypes, any>({
+        getSerials: build.query<FilmsTypes, SearchType>({
             query: (payload) => {
                 return {
                     method: 'GET',
-                    url: `films?order=RATING&type=TV_SERIES&ratingFrom=5&ratingTo=10&yearFrom=1000&yearTo=2024&page=1`,
+                    url: `films`,
                     params: {
-                        payload
+                        ...payload
                     }
                 }
-            }
+            },
+            providesTags: ['filter']
         }),
 
         getCategories: build.query<CategoriesType, {}>({
@@ -60,8 +62,6 @@ export const filmsAPI = createApi({
 
 
 
-        // MINI_SERIES
-        // TV_SERIES
     }),
 
 });

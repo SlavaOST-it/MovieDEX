@@ -5,20 +5,20 @@ import {fetchFilms} from "../../bll/reducers/films/filmsReducer";
 import {FilmItemType} from "../../api/types/FilmsTypes";
 import {CardMovie} from "../../common/components/cardMovie/CardMovie";
 import styled from "styled-components";
-import {SortValue} from "../../common/components/sortValue/SortValue";
-import {CountriesType, GenresType} from "../../api/types/CategoriesTypes";
+import {CustomSelectValue} from "../../common/components/sortValue/CustomSelectValue";
+import {CountryType, GenreType} from "../../api/types/CategoriesTypes";
 import {setCurrentCountry, setCurrentGenre} from "../../bll/reducers/categoriesReducer/CategoriesReducer";
 import {useSearchParams} from 'react-router-dom';
 import {Loader} from "../../common/components/loader/Loader";
 
 
-export const Films = () => {
+export const Catalog = () => {
     const dispatch = useAppDispatch()
     const films: FilmItemType[] = useAppSelector(selectFilms)
-    const genres: GenresType[] = useAppSelector(state => state.categories.genres)
+    const genres: GenreType[] = useAppSelector(state => state.categories.genres)
     const currentGenre = useAppSelector(state => state.categories.currentGenreId)
 
-    const countries: CountriesType[] = useAppSelector(state => state.categories.countries)
+    const countries: CountryType[] = useAppSelector(state => state.categories.countries)
     const currentCountry = useAppSelector(state => state.categories.currentCountryId)
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -70,21 +70,21 @@ export const Films = () => {
             </div>
 
             <div>
-                Жанр:
-                <SortValue
-                    typeValue={'genre'}
-                    items={genres}
-                    currentItemId={currentGenre}
-                    callback={selectGenre}
-                />
+                {/*Жанр:*/}
+                {/*<CustomSelectValue*/}
+                {/*    typeValue={'genre'}*/}
+                {/*    items={genres}*/}
+                {/*    currentItemId={currentGenre}*/}
+                {/*    callback={selectGenre}*/}
+                {/*/>*/}
 
-                Страна:
-                <SortValue
-                    typeValue={'country'}
-                    items={countries}
-                    currentItemId={currentCountry}
-                    callback={selectCountry}
-                />
+                {/*Страна:*/}
+                {/*<CustomSelectValue*/}
+                {/*    typeValue={'country'}*/}
+                {/*    items={countries}*/}
+                {/*    currentItemId={currentCountry}*/}
+                {/*    callback={selectCountry}*/}
+                {/*/>*/}
 
                 <div>Год выхода</div>
                 <div>Страна</div>

@@ -38,7 +38,7 @@ export const {setTopFilms, setCurrentPage} = slice.actions
 //
 //     try {
 //         const res = await filmsAPIold.getTopFilms(currentPage)
-//         dispatch(setTopFilms({pagesCount: res.data.pagesCount, films: res.data.films}))
+//         dispatch(setTopFilms({pagesCount: res.data.pagesCount, catalog: res.data.catalog}))
 //     } catch (e) {
 //         baseErrorHandler(e as Error | AxiosError, dispatch)
 //         dispatch(setAppStatusAC({status: AppStatus.FAILED}))

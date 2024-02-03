@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useGetTopFilmsQuery} from '../../api/filmsApi';
 import {Loader} from "../../common/components/loader/Loader";
 import {Pagination} from "../../common/components/pagination/Pagination";
-import {FilmsBlock, Wrapper, TitlePage} from "../../common/styles/СommonStyles.styled";
+import {FilmsBlock, TitlePage, Wrapper} from "../../common/styles/СommonStyles.styled";
 import {CardMovie} from "../../common/components/cardMovie/CardMovie";
 
 
@@ -11,13 +11,16 @@ export const TopFilmsPage = () => {
 
     const {data, isLoading} = useGetTopFilmsQuery(currentPage)
 
+    const sortedFilms = data?.items && [...data.items]
+        .sort((a, b) => b.ratingKinopoisk - a.ratingKinopoisk);
+
     const totalPageCount = data?.totalPages ? data.totalPages : 0
 
     const handlePageChange = (pageNumber: number) => {
         setCurrentPage(pageNumber);
     };
 
-    if(isLoading){
+    if (isLoading) {
         return <Loader/>
     }
 
@@ -25,7 +28,7 @@ export const TopFilmsPage = () => {
         <Wrapper>
             <TitlePage>Топ <span> фильмов </span></TitlePage>
             <FilmsBlock>
-                {data?.items.map((el, index) => (
+                {sortedFilms?.map((el, index) => (
                     <CardMovie key={index}
                                item={el}
                     />

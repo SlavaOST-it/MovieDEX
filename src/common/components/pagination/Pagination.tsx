@@ -58,7 +58,7 @@ export const Pagination: FC<PaginationType> = ({
                         </CurrentPage>
                     })}
 
-                {totalItemsCount && !currentPage &&
+                {totalItemsCount > 0 && !currentPage &&
                     <>
                         <span>...</span>
                         <CurrentPage $selected_page={false}>{totalItemsCount}</CurrentPage>

@@ -111,7 +111,7 @@ export const NavigateLink = styled(NavLink)<{ theme: ThemeType }>`
 export const ListItem = styled.li`
 `
 
-export const Ul = styled.ul`
+export const Ul = styled.ul<{ theme: ThemeType }>`
     display: flex;
     flex-direction: column;
     justify-content: center;

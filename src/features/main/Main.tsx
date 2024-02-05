@@ -4,7 +4,7 @@ import {Route, Routes} from 'react-router-dom';
 import styled from "styled-components";
 import {PATH} from "../../utils/routes/routes";
 
-import {Catalog} from "../catalog/Catalog";
+import {Films} from "../catalog/Films";
 import {TopFilmsPage} from "../topFilms/TopFilmsPage";
 import {PremieresPage} from "../premieres/PremieresPage";
 import {SettingsPage} from "../settings/SettingsPage";
@@ -22,7 +22,7 @@ export const Main: FC<HeaderType> = ({theme, setTheme}) => {
             <Routes>
                 <Route path={PATH.premieres} element={<PremieresPage/>}/>
                 <Route path={PATH.topFilms} element={<TopFilmsPage/>}/>
-                <Route path={PATH.catalog} element={<Catalog/>}/>
+                <Route path={PATH.catalog} element={<Films/>}/>
                 <Route path={PATH.serials} element={<SerialsPage/>}/>
                 <Route path={PATH.settings} element={<SettingsPage theme={theme} setTheme={setTheme}/>}/>
             </Routes>

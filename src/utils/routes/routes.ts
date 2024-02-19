@@ -2,7 +2,7 @@ export const PATH = {
     startPage: '/startPage',
     topFilms: '/topFilms',
     premieres: '/premieres',
-    catalog: '/catalog',
+    catalog: '/films',
     categories: '/categories',
     serials: '/serials',
     settings: '/settings',

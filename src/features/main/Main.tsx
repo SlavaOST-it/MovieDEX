@@ -4,7 +4,7 @@ import {Route, Routes} from 'react-router-dom';
 import styled from "styled-components";
 import {PATH} from "../../utils/routes/routes";
 
-import {Films} from "../catalog/Films";
+import {Films} from "../films/Films";
 import {TopFilmsPage} from "../topFilms/TopFilmsPage";
 import {PremieresPage} from "../premieres/PremieresPage";
 import {SettingsPage} from "../settings/SettingsPage";

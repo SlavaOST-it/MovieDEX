@@ -7,7 +7,7 @@ import {CategoriesType, SearchTypeOLD} from "./types/CategoriesTypes";
 
 export const filmsAPIold = {
     // getTopFilms(currentPage: number) {
-    //     return instance<TopFilmsType>(`catalog/top?page=${currentPage}`, {});
+    //     return instance<TopFilmsType>(`films/top?page=${currentPage}`, {});
     // },
 
     getPremiere(year: number, month: string) {

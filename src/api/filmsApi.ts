@@ -60,6 +60,17 @@ export const filmsAPI = createApi({
             }
         }),
 
+        getFilms: build.query<FilmsTypes, SearchType>({
+            query(payload) {
+                return {
+                    method: 'GET',
+                    url: `films`,
+                    params: {
+                        ...payload
+                    }
+                }
+            }
+        }),
 
 
     }),

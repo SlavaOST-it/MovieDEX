@@ -42,6 +42,7 @@ export const darkTheme = {
     transition: "all .2s ease-in-out",
 
     box_shadow: "1px 14px 20px 6px rgba(0, 0, 0, 0.4)",
+    box_shadow_hover: 'rgba(0, 0, 0, 0.6) 1px 6px 12px 6px'
 }
 
 

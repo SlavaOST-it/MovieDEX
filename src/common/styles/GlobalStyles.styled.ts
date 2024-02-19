@@ -34,7 +34,15 @@ export const GlobalStyled = createGlobalStyle<{ theme: any }>`
     }
 
     button {
-        border: none;
+            display: inline-block;
+            border: none;
+            margin: 0;
+            padding: 0;
+            background-color: transparent;
+            color: inherit;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
     }
 
     body {
@@ -42,7 +50,8 @@ export const GlobalStyled = createGlobalStyle<{ theme: any }>`
         font-size: 16px;
         font-weight: 400;
         line-height: 1.7;
-        letter-spacing: .2px;
+        letter-spacing: 0.2px;
+            color: ${props => props.theme.colors.primary};
 
         //background: ${props => props.theme.colors.background.color_1};
         background: linear-gradient(90deg,

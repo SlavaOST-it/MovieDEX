@@ -1,13 +1,14 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
+import {ThemeType} from "../../types/commonTypes";
 
 
 interface OptionType {
     value: string | number;
-    name?: string;
+    optionName?: string;
 }
 
-interface CustomSelectValueType {
+export interface CustomSelectValueType {
     value?: string | number;
     onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
     options?: OptionType[];
@@ -20,7 +21,7 @@ export const CustomSelectValue: FC<CustomSelectValueType> = ({value,
         <SelectValue value={value} onChange={onChange}>
             {options.map((el, index) => (
                 <Option key={index} value={el.value}>
-                    {el.name}
+                    {el.optionName}
                 </Option>
             ))}
         </SelectValue>
@@ -30,27 +31,29 @@ export const CustomSelectValue: FC<CustomSelectValueType> = ({value,
 
 export const Option = styled.option`
     color: inherit;
-    background-color: gray;
+    background-color: ${props => props.theme.colors.secondary};
 `
 
-export const SelectValue = styled.select`
-    appearance: none;
-    border: 0;
+export const SelectValue = styled.select<{theme: ThemeType}>`
+    font-family: Jura, sans-serif;
+    font-size: 16px;
+   
+    color: ${props => props.theme.colors.primary};
+
+    width: 190px;
+    padding: 10px 5px;
+    border: none;
     outline: 0;
-    font: inherit;
-    /* Personalize */
-    width: 20rem;
-    padding: 1rem 4rem 1rem 1rem;
-    background-color: #a63c3c;
-    //background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg) no-repeat right 0.8em center / 1.4em,
-linear-gradient(to left, rgba(255, 255, 255, 0.3) 3 em, rgba(255, 255, 255, 0.2) 3 em);
-    color: white;
     border-radius: 0.25em;
-    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+
+    background-color: ${props => props.theme.colors.accent};
+    box-shadow: rgba(0, 0, 0, 0.2) 3px 6px 8px 4px;
+
     cursor: pointer;
+    transition: ${props => props.theme.transition};
 
-
-    &:focus {
-        outline: none;
+    &:hover {
+        box-shadow: ${props => props.theme.box_shadow_hover};
+        transition: ${props => props.theme.transition};
     }
 `

@@ -12,7 +12,7 @@ import {useSearchParams} from 'react-router-dom';
 import {Loader} from "../../common/components/loader/Loader";
 
 
-export const Catalog = () => {
+export const Films = () => {
     const dispatch = useAppDispatch()
     const films: FilmItemType[] = useAppSelector(selectFilms)
     const genres: GenreType[] = useAppSelector(state => state.categories.genres)

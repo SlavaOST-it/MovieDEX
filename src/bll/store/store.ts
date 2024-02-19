@@ -10,12 +10,15 @@ import {categoriesReducer} from "../reducers/categoriesReducer/CategoriesReducer
 import {FilmsActionTypes} from "../reducers/films/FilmsActionType";
 import {AppReducerActionTypes} from "../reducers/appReducer/appReducer-types";
 import {CategoriesActionTypes} from "../reducers/categoriesReducer/CategoriesActionType";
+import {filtersSortReducer} from "../reducers/filtersSort/filtersSortReducer";
+import {FiltersSortActionTypes} from "../reducers/filtersSort/FiltersSortActionTypes";
 
 
 const rootReducer = combineReducers({
     app: appReducer,
     films: filmsReducer,
     categories: categoriesReducer,
+    filtersSort: filtersSortReducer,
 
     // RTK Query
     [filmsAPI.reducerPath]: filmsAPI.reducer,
@@ -25,6 +28,7 @@ type ReduxActionType =
     AppReducerActionTypes
     | FilmsActionTypes
     | CategoriesActionTypes
+    | FiltersSortActionTypes
 
 
 export const store = configureStore({

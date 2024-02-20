@@ -15,7 +15,7 @@ export const sortOrdersFilm: Array<{ optionName: string, value: OrderType }> = [
     }]
 
 
-export const sortTypesFilm: Array<{ optionName: string, value: StyleFilmType }> = [
+export const sortTypesSerial: Array<{ optionName: string, value: StyleFilmType }> = [
     {
         optionName: 'Сериал',
         value: 'TV_SERIES'
@@ -27,6 +27,13 @@ export const sortTypesFilm: Array<{ optionName: string, value: StyleFilmType }> 
     {
         optionName: 'ТВ-шоу',
         value: 'TV_SHOW'
+    },
+]
+
+export const sortTypesFilm: Array<{ optionName: string, value: StyleFilmType }> = [
+    {
+        optionName: 'Фильм',
+        value: 'FILM'
     },
 ]
 

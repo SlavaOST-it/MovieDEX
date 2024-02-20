@@ -1,101 +1,73 @@
-import React, {useEffect, useRef} from 'react';
-import {useAppDispatch, useAppSelector} from "../../utils/hooks/hooks";
-import {selectFilms} from "./selectors";
-import {fetchFilms} from "../../bll/reducers/films/filmsReducer";
-import {FilmItemType} from "../../api/types/FilmsTypes";
-import {CardMovie} from "../../common/components/cardMovie/CardMovie";
+import React, {useState} from 'react';
 import styled from "styled-components";
-import {CustomSelectValue} from "../../common/components/sortValue/CustomSelectValue";
-import {CountryType, GenreType} from "../../api/types/CategoriesTypes";
-import {setCurrentCountry, setCurrentGenre} from "../../bll/reducers/categoriesReducer/CategoriesReducer";
-import {useSearchParams} from 'react-router-dom';
-import {Loader} from "../../common/components/loader/Loader";
 
+import {useGetFilmsQuery} from "../../api/filmsApi";
+
+import {Loader} from "../../common/components/loader/Loader";
+import {TitlePage, Wrapper} from "../../common/styles/СommonStyles.styled";
+import {CardMovie} from "../../common/components/cardMovie/CardMovie";
+import {Pagination} from "../../common/components/pagination/Pagination";
+import {FiltersSort} from "../../common/components/filtersSort/FiltersSort";
+
+
+import {useAppSelector} from "../../utils/hooks/hooks";
 
 export const Films = () => {
-    const dispatch = useAppDispatch()
-    const films: FilmItemType[] = useAppSelector(selectFilms)
-    const genres: GenreType[] = useAppSelector(state => state.categories.genres)
-    const currentGenre = useAppSelector(state => state.categories.currentGenreId)
+    const [page, setPage] = useState(1)
 
-    const countries: CountryType[] = useAppSelector(state => state.categories.countries)
-    const currentCountry = useAppSelector(state => state.categories.currentCountryId)
+    const order = useAppSelector(state => state.filtersSort.order)
+    const idCountry = useAppSelector(state => state.filtersSort.idCountry)
+    const idGenre = useAppSelector(state => state.filtersSort.idGenre)
+    const rating = useAppSelector(state => state.filtersSort.rating)
+    const year = useAppSelector(state => state.filtersSort.year)
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const {data, isLoading} = useGetFilmsQuery({page,
+        order,
+        type: 'FILM',
+        countries: idCountry === 0 ? undefined : idCountry,
+        genres: idGenre === 0 ? undefined : idGenre,
+        ratingFrom: rating === 0 ? undefined : rating,
+        yearFrom: year === 0 ? undefined : year,
+        yearTo: year === 0 ? undefined : year,
+    })
 
-    const selectGenre = (genreId: number) => {
-        dispatch(setCurrentGenre({currentGenreId: genreId}))
+    const sortedFilms = data?.items && [...data.items]
+        .sort((a, b) => b.ratingKinopoisk - a.ratingKinopoisk);
+
+    // ============ PAGINATION =====================//
+    const totalPageCount = data?.totalPages ? data.totalPages : 0
+
+    const handlePageChange = (pageNumber: number) => {
+        setPage(pageNumber);
+    };
+
+    // ============ Loading =====================//
+
+    if(isLoading){
+        return <Loader/>
     }
-
-    const selectCountry = (countryId: number) => {
-        dispatch(setCurrentCountry({currentCountryId: countryId}))
-    }
-
-    useEffect(() => {
-        const fromUrlGenre = searchParams.get('genres')
-        const fromUrlCountry = searchParams.get('countries')
-
-
-        if (fromUrlGenre !== null) {
-            dispatch(setCurrentGenre({currentGenreId: Number(fromUrlGenre)}))
-        }
-        if (fromUrlCountry !== null) {
-            dispatch(setCurrentCountry({currentCountryId: Number(fromUrlCountry)}))
-        }
-    }, []);
-
-
-    useEffect(() => {
-        setSearchParams({
-            genres: `${currentGenre}`,
-            countries: `${currentCountry}`
-        })
-
-        dispatch(fetchFilms())
-    }, [dispatch, currentGenre, currentCountry])
-
-    // if(isLoading){
-    //     return <Loader/>
-    // }
 
     return (
-        <FilmsWrapper>
-            <h2>Каталог <span>фильмов</span></h2>
+        <Wrapper>
+            <TitlePage> Каталог <span>фильмов</span> </TitlePage>
 
-            <div>
-                <input placeholder={'Название фильма'}/>
-                <button>
-                    Найти
-                </button>
-            </div>
-
-            <div>
-                {/*Жанр:*/}
-                {/*<CustomSelectValue*/}
-                {/*    typeValue={'genre'}*/}
-                {/*    items={genres}*/}
-                {/*    currentItemId={currentGenre}*/}
-                {/*    callback={selectGenre}*/}
-                {/*/>*/}
-
-                {/*Страна:*/}
-                {/*<CustomSelectValue*/}
-                {/*    typeValue={'country'}*/}
-                {/*    items={countries}*/}
-                {/*    currentItemId={currentCountry}*/}
-                {/*    callback={selectCountry}*/}
-                {/*/>*/}
-
-                <div>Год выхода</div>
-                <div>Страна</div>
-            </div>
+            <FiltersSort typeFilm={'FILM'}/>
 
             <FilmsBlock>
-                {films.map((el, index) => (
-                    <CardMovie key={index} item={el}/>
+                {sortedFilms?.map((el, index) => (
+                    <CardMovie
+                        key={index}
+                        item={el}
+                    />
                 ))}
             </FilmsBlock>
-        </FilmsWrapper>
+
+            <Pagination
+                totalItemsCount={totalPageCount}
+                onPageChanges={handlePageChange}
+                currentPage={page}
+            />
+        </Wrapper>
     );
 };
 

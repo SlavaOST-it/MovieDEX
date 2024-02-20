@@ -1,15 +1,14 @@
-import React, {ChangeEvent} from 'react';
-import {useAppDispatch, useAppSelector} from "../../../utils/hooks/hooks";
+import React, {ChangeEvent, FC, useEffect} from 'react';
+import {useGetCategoriesQuery} from "../../../api/filmsApi";
+
 import {useCurrentMonthAndYear} from "../../../utils/hooks/currentDate";
+import {useAppDispatch, useAppSelector} from "../../../utils/hooks/hooks";
+
 import {CustomSelectValue} from "../sortValue/CustomSelectValue";
-import {
-    FiltersBlock,
-    ResetButton,
-    SortItem,
-    sortOrdersFilm,
-    sortRatingFilm,
-    sortTypesFilm
-} from "../../../features/serials/SerialsPage";
+import {FiltersBlock, ResetButton, SortItem,} from "../../../features/serials/SerialsPage";
+
+import {StyleFilmType} from "../../../api/types/CategoriesTypes";
+import {sortOrdersFilm, sortRatingFilm, sortTypesFilm, sortTypesSerial} from './dataFiltersSort';
 import {
     setIdCountry,
     setIdGenre,
@@ -18,14 +17,19 @@ import {
     setType,
     setYear
 } from '../../../bll/reducers/filtersSort/filtersSortReducer';
-import {useGetCategoriesQuery} from "../../../api/filmsApi";
 
 
-export const FiltersSort= () => {
+type FiltersSortType = {
+    typeFilm: StyleFilmType
+}
+
+export const FiltersSort: FC<FiltersSortType> = ({typeFilm}) => {
     const dispatch = useAppDispatch()
 
     const order = useAppSelector(state => state.filtersSort.order)
-    const type = useAppSelector(state => state.filtersSort.type)
+    const typeSerial = useAppSelector(state => state.filtersSort.type)
+    const idCountry = useAppSelector(state => state.filtersSort.idCountry)
+    const idGenre = useAppSelector(state => state.filtersSort.idGenre)
     const rating = useAppSelector(state => state.filtersSort.rating)
     const year = useAppSelector(state => state.filtersSort.year)
 
@@ -41,14 +45,18 @@ export const FiltersSort= () => {
         dispatch(setOrder({order: selectedOrder ? selectedOrder.value : 'RATING'}));
     };
 
-    const changeTypeFilm = (event: ChangeEvent<HTMLSelectElement>) => {
+    const changeTypesSerial = (event: ChangeEvent<HTMLSelectElement>) => {
         const selectedValue = event.target.value;
-        const selectedType = sortTypesFilm.find(type => type.value === selectedValue);
+        const selectedType = sortTypesSerial.find(type => type.value === selectedValue);
         dispatch(setType({type: selectedType ? selectedType.value : 'TV_SERIES'}))
     };
 
+    const changeTypeFilm = () => {
+        dispatch(setType({type: 'FILM'}))
+    };
+
     const changeCountryFilm = (event: ChangeEvent<HTMLSelectElement>) => {
-        dispatch(setIdCountry({idCountry:Number(event.target.value)}))
+        dispatch(setIdCountry({idCountry: Number(event.target.value)}))
     }
 
     const changeGenreFilm = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -72,6 +80,9 @@ export const FiltersSort= () => {
         dispatch(setYear({year: 0}))
     }
 
+    useEffect(() => {
+       return  resetFiltersHandler()
+    }, []);
 
     return (
         <FiltersBlock>
@@ -87,16 +98,16 @@ export const FiltersSort= () => {
             <SortItem>
                 Категория:
                 <CustomSelectValue
-                    value={type}
-                    onChange={changeTypeFilm}
-                    options={sortTypesFilm}
+                    value={typeFilm === 'FILM' ? 'FILM' : typeSerial}
+                    onChange={typeFilm === 'FILM' ?  changeTypeFilm : changeTypesSerial}
+                    options={typeFilm === 'FILM' ? sortTypesFilm : sortTypesSerial}
                 />
             </SortItem>
-
 
             <SortItem>
                 Страна:
                 <CustomSelectValue
+                    value={idCountry}
                     onChange={changeCountryFilm}
                     options={dataCategories?.countries
                         ? [{optionName: 'Любая страна', value: 0}, ...dataCategories.countries.map(el => ({
@@ -106,10 +117,10 @@ export const FiltersSort= () => {
                         : []}/>
             </SortItem>
 
-
             <SortItem>
                 Жанр:
                 <CustomSelectValue
+                    value={idGenre}
                     onChange={changeGenreFilm}
                     options={dataCategories?.genres
                         ? [{optionName: 'Любой жанр', value: 0}, ...dataCategories.genres.map(el => ({
@@ -119,7 +130,6 @@ export const FiltersSort= () => {
                         : []}/>
             </SortItem>
 
-
             <SortItem>
                 Рейтинг:
                 <CustomSelectValue
@@ -128,7 +138,6 @@ export const FiltersSort= () => {
                     options={sortRatingFilm}
                 />
             </SortItem>
-
 
             <SortItem>
                 Год:
@@ -141,7 +150,6 @@ export const FiltersSort= () => {
                     }))]}
                 />
             </SortItem>
-
 
             <SortItem>
                 Сбросить фильтры

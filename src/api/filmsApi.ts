@@ -82,4 +82,5 @@ export const {
     useGetPremieresFilmsQuery,
     useGetSerialsQuery,
     useGetCategoriesQuery,
+    useGetFilmsQuery
 } = filmsAPI

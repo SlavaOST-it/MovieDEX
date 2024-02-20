@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {sortOrdersFilm, sortTypesFilm, sortRatingFilm} from "../../../common/components/filtersSort/dataFiltersSort";
+import {sortOrdersFilm, sortTypesSerial, sortRatingFilm} from "../../../common/components/filtersSort/dataFiltersSort";
 import {OrderType, StyleFilmType} from "../../../api/types/CategoriesTypes";
 
 
 const initialState = {
     order: sortOrdersFilm[0].value as OrderType,
-    type: sortTypesFilm[0].value,
+    type: sortTypesSerial[0].value as StyleFilmType,
     idCountry: 0,
     idGenre: 0,
     rating: sortRatingFilm[0].value,
@@ -29,7 +29,7 @@ const slice = createSlice({
         },
 
         setIdGenre(state, action: PayloadAction<{idGenre: number}>){
-            state.idCountry = action.payload.idGenre
+            state.idGenre = action.payload.idGenre
         },
 
         setRating(state, action: PayloadAction<{rating: number}>){

@@ -30,7 +30,7 @@ export const filmsAPI = createApi({
             },
         }),
 
-        getTopFilms: build.query<FilmsTypes, {page: number, type: TopFilmType}>({
+        getTopFilms: build.query<FilmsTypes, { page: number, type: TopFilmType }>({
             query: (payload) => {
                 return {
                     url: `films/collections`,
@@ -75,7 +75,18 @@ export const filmsAPI = createApi({
             }
         }),
 
-
+        // Дописать запрос или сделать разные запросы
+        getInfoMovie: build.query<any, any>({
+            query(payload) {
+                return{
+                    method: 'GET',
+                    url: `films`,
+                    params: {
+                        ...payload
+                    }
+                }
+            }
+        })
     }),
 
 });
@@ -85,5 +96,6 @@ export const {
     useGetPremieresFilmsQuery,
     useGetSerialsQuery,
     useGetCategoriesQuery,
-    useGetFilmsQuery
+    useGetFilmsQuery,
+    useGetInfoMovieQuery
 } = filmsAPI

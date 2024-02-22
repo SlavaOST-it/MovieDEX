@@ -4,12 +4,12 @@ import {Route, Routes} from 'react-router-dom';
 import styled from "styled-components";
 import {PATH} from "../../utils/routes/routes";
 
-import {Films} from "../films/Films";
-import {TopFilmsPage} from "../topFilms/TopFilmsPage";
-import {PremieresPage} from "../premieres/PremieresPage";
+import {FilmsPage} from "../filmsPage/FilmsPage";
+import {TopFilmsPage} from "../topFilmsPage/TopFilmsPage";
+import {PremieresPage} from "../premieresPage/PremieresPage";
 import {SettingsPage} from "../settings/SettingsPage";
 import {ThemeType} from "../../common/types/commonTypes";
-import {SerialsPage} from "../serials/SerialsPage";
+import {SerialsPage} from "../serialsPage/SerialsPage";
 
 type HeaderType = {
     theme: ThemeType,
@@ -22,7 +22,7 @@ export const Main: FC<HeaderType> = ({theme, setTheme}) => {
             <Routes>
                 <Route path={PATH.premieres} element={<PremieresPage/>}/>
                 <Route path={PATH.topFilms} element={<TopFilmsPage/>}/>
-                <Route path={PATH.catalog} element={<Films/>}/>
+                <Route path={PATH.catalog} element={<FilmsPage/>}/>
                 <Route path={PATH.serials} element={<SerialsPage/>}/>
                 <Route path={PATH.settings} element={<SettingsPage theme={theme} setTheme={setTheme}/>}/>
             </Routes>

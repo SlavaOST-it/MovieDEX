@@ -1,10 +1,10 @@
 export const PATH = {
     startPage: '/startPage',
-    topFilms: '/topFilms',
-    premieres: '/premieres',
-    catalog: '/films',
+    topFilms: '/topFilmsPage',
+    premieres: '/premieresPage',
+    catalog: '/filmsPage',
     categories: '/categories',
-    serials: '/serials',
+    serials: '/serialsPage',
     settings: '/settings',
     page404: '/404',
 }

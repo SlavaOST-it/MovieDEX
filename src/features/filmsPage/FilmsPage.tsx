@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import styled from "styled-components";
 
 import {useGetFilmsQuery} from "../../api/filmsApi";
 
 import {Loader} from "../../common/components/loader/Loader";
-import {TitlePage, Wrapper} from "../../common/styles/СommonStyles.styled";
+import {FilmsBlock, TitlePage, Wrapper} from "../../common/styles/СommonStyles.styled";
 import {CardMovie} from "../../common/components/cardMovie/CardMovie";
 import {Pagination} from "../../common/components/pagination/Pagination";
 import {FiltersSort} from "../../common/components/filtersSort/FiltersSort";
 
-
 import {useAppSelector} from "../../utils/hooks/hooks";
 
-export const Films = () => {
+
+export const FilmsPage = () => {
     const [page, setPage] = useState(1)
 
     const order = useAppSelector(state => state.filtersSort.order)
@@ -74,19 +73,3 @@ export const Films = () => {
         </Wrapper>
     );
 };
-
-export const FilmsBlock = styled.div` //переименовать или экспортировать из commonStyles
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-
-  gap: 30px;
-`
-
-export const FilmsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 100%;
-`

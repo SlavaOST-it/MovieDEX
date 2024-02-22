@@ -36,9 +36,19 @@ export const Pagination: FC<PaginationType> = ({
     const rightPortionPageNumber = (portionNumber * portionSize);
 
 
+    const setCurrentPage = (currentPage: number) => {
+        onPageChanges(currentPage)
+
+        // страница прокручивается вверх
+        window.scrollTo({
+            top: 200,
+            behavior: 'smooth'
+        });
+    }
+
     const setLastPortionHandler = () => {
         setPortionNumber(portionCount)
-        onPageChanges(pagesCount)
+        setCurrentPage(pagesCount)
     }
 
     return (
@@ -56,9 +66,7 @@ export const Pagination: FC<PaginationType> = ({
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map(p => {
                     return <CurrentPage $selected_page={currentPage === p} key={p}
-                                        onClick={() => {
-                                            onPageChanges(p)
-                                        }}
+                                        onClick={() =>setCurrentPage(p)}
                     >
                         {p}
                     </CurrentPage>
@@ -69,7 +77,7 @@ export const Pagination: FC<PaginationType> = ({
                     <span>...</span>
                     <CurrentPage $selected_page={false}
                                  onClick={setLastPortionHandler}>
-                        {totalItemsCount}
+                        {pagesCount}
                     </CurrentPage>
                 </>
             }

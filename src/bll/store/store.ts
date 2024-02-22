@@ -3,21 +3,14 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 
 import {filmsAPI} from "../../api/filmsApi";
-import {filmsReducer} from "../reducers/films/filmsReducer";
 import {appReducer} from "../reducers/appReducer/appReducer";
-import {categoriesReducer} from "../reducers/categoriesReducer/CategoriesReducer";
-
-import {FilmsActionTypes} from "../reducers/films/FilmsActionType";
 import {AppReducerActionTypes} from "../reducers/appReducer/appReducer-types";
-import {CategoriesActionTypes} from "../reducers/categoriesReducer/CategoriesActionType";
 import {filtersSortReducer} from "../reducers/filtersSort/filtersSortReducer";
 import {FiltersSortActionTypes} from "../reducers/filtersSort/FiltersSortActionTypes";
 
 
 const rootReducer = combineReducers({
     app: appReducer,
-    films: filmsReducer,
-    categories: categoriesReducer,
     filtersSort: filtersSortReducer,
 
     // RTK Query
@@ -26,8 +19,6 @@ const rootReducer = combineReducers({
 
 type ReduxActionType =
     AppReducerActionTypes
-    | FilmsActionTypes
-    | CategoriesActionTypes
     | FiltersSortActionTypes
 
 

@@ -1,4 +1,4 @@
-import {OrderType, StyleFilmType} from "../../../api/types/CategoriesTypes";
+import {OrderType, StyleFilmType, TopFilmType} from "../../../api/types/CategoriesTypes";
 
 export const sortOrdersFilm: Array<{ optionName: string, value: OrderType }> = [
     {
@@ -57,5 +57,48 @@ export const sortRatingFilm: Array<{ optionName: string, value: number }> = [
     {
         optionName: 'Больше 6',
         value: 6
+    },
+]
+
+export const sortTopFilms: Array<{ optionName:string, value: TopFilmType }> = [
+    {
+        optionName: 'Любой',
+        value: 'TOP_POPULAR_ALL'
+    },
+    {
+        optionName: 'Топ 250 фильмов',
+        value: 'TOP_250_MOVIES'
+    },
+    {
+        optionName: 'Вампиры',
+        value: 'VAMPIRE_THEME'
+    },
+    {
+        optionName: 'Комиксы',
+        value: 'COMICS_THEME'
+    },
+    {
+        optionName: 'Закрытые релизы',
+        value: 'CLOSES_RELEASES'
+    },
+    {
+        optionName: 'Семейные',
+        value: 'FAMILY'
+    },
+    {
+        optionName: 'Любовные',
+        value: 'LOVE_THEME'
+    },
+    {
+        optionName: 'Зомби',
+        value: 'ZOMBIE_THEME'
+    },
+    {
+        optionName: 'Катастрофы',
+        value: 'CATASTROPHE_THEME'
+    },
+    {
+        optionName: 'Детские мультфильмы',
+        value: 'KIDS_ANIMATION_THEME'
     },
 ]

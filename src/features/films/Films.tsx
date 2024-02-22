@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 
 import {useGetFilmsQuery} from "../../api/filmsApi";
@@ -40,6 +40,10 @@ export const Films = () => {
     const handlePageChange = (pageNumber: number) => {
         setPage(pageNumber);
     };
+
+    useEffect(() => {
+        handlePageChange(1)
+    }, [order, idCountry, idGenre, year, rating]);
 
     // ============ Loading =====================//
 

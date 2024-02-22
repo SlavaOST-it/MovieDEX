@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {PremieresFilmsType} from "./types/PremieresFilmsType";
 import {FilmsTypes} from "./types/FilmsTypes";
 
-import {CategoriesType, SearchType} from "./types/CategoriesTypes";
+import {CategoriesType, SearchType, TopFilmType} from "./types/CategoriesTypes";
 
 
 export const filmsAPI = createApi({
@@ -30,10 +30,13 @@ export const filmsAPI = createApi({
             },
         }),
 
-        getTopFilms: build.query<FilmsTypes, number>({
-            query: (currentPage: number) => {
+        getTopFilms: build.query<FilmsTypes, {page: number, type: TopFilmType}>({
+            query: (payload) => {
                 return {
-                    url: `films/collections?type=TOP_250_MOVIES&page=${currentPage}`,
+                    url: `films/collections`,
+                    params: {
+                        ...payload
+                    }
                 }
             }
         }),

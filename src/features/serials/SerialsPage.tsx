@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import styled from "styled-components";
+import React, {useEffect, useState} from 'react';
 
 import {useGetSerialsQuery} from "../../api/filmsApi";
 
@@ -7,7 +6,6 @@ import {Loader} from "../../common/components/loader/Loader";
 import {CardMovie} from "../../common/components/cardMovie/CardMovie";
 import {Pagination} from "../../common/components/pagination/Pagination";
 import {FiltersSort} from "../../common/components/filtersSort/FiltersSort";
-import {SelectValue} from "../../common/components/sortValue/CustomSelectValue";
 import {FilmsBlock, TitlePage, Wrapper} from "../../common/styles/СommonStyles.styled";
 
 import {useAppSelector} from "../../utils/hooks/hooks";
@@ -46,6 +44,10 @@ export const SerialsPage = () => {
         setPage(pageNumber);
     };
 
+    useEffect(() => {
+        handlePageChange(1)
+    }, [order, type, idCountry, idGenre, year, rating]);
+
     // ============ Loading =====================//
     if (isLoading) {
         return <Loader/>
@@ -74,21 +76,3 @@ export const SerialsPage = () => {
     );
 };
 
-export const ResetButton = styled(SelectValue)`
-`
-
-export const SortItem = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-`
-export const FiltersBlock = styled.div`
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid rgb(57, 78, 90);
-    gap: 20px;
-`

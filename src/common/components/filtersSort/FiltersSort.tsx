@@ -5,7 +5,7 @@ import {useCurrentMonthAndYear} from "../../../utils/hooks/currentDate";
 import {useAppDispatch, useAppSelector} from "../../../utils/hooks/hooks";
 
 import {CustomSelectValue} from "../sortValue/CustomSelectValue";
-import {FiltersBlock, ResetButton, SortItem,} from "../../../features/serials/SerialsPage";
+import {FiltersBlock, ResetButton, SortItem,} from "./FiltersSort.styled";
 
 import {StyleFilmType} from "../../../api/types/CategoriesTypes";
 import {sortOrdersFilm, sortRatingFilm, sortTypesFilm, sortTypesSerial} from './dataFiltersSort';

@@ -3,6 +3,7 @@ import {PremieresFilmsType} from "./types/PremieresFilmsType";
 import {FilmsTypes} from "./types/FilmsTypes";
 
 import {CategoriesType, SearchType, TopFilmType} from "./types/CategoriesTypes";
+import {MovieI} from "./types/MovieType";
 
 
 export const filmsAPI = createApi({
@@ -15,7 +16,8 @@ export const filmsAPI = createApi({
             'Content-Type': 'application/json',
         }
     }),
-    tagTypes: ['filter'],
+    tagTypes: ['filter', 'movieId'],
+
     endpoints: (build) => ({
         getPremieresFilms: build.query<PremieresFilmsType, { year: number, month: string }>({
             query: ({year, month}) => {
@@ -74,19 +76,6 @@ export const filmsAPI = createApi({
                 }
             }
         }),
-
-        // Дописать запрос или сделать разные запросы
-        getInfoMovie: build.query<any, any>({
-            query(payload) {
-                return{
-                    method: 'GET',
-                    url: `films`,
-                    params: {
-                        ...payload
-                    }
-                }
-            }
-        })
     }),
 
 });
@@ -97,5 +86,4 @@ export const {
     useGetSerialsQuery,
     useGetCategoriesQuery,
     useGetFilmsQuery,
-    useGetInfoMovieQuery
 } = filmsAPI

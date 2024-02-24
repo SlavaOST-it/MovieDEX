@@ -1,9 +1,8 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {PremieresFilmsType} from "./types/PremieresFilmsType";
-import {FilmsTypes} from "./types/FilmsTypes";
 
+import {FilmsTypes} from "./types/FilmsTypes";
+import {PremieresFilmsType} from "./types/PremieresFilmsType";
 import {CategoriesType, SearchType, TopFilmType} from "./types/CategoriesTypes";
-import {MovieI} from "./types/MovieType";
 
 
 export const filmsAPI = createApi({
@@ -81,9 +80,9 @@ export const filmsAPI = createApi({
 });
 
 export const {
-    useGetTopFilmsQuery,
-    useGetPremieresFilmsQuery,
-    useGetSerialsQuery,
-    useGetCategoriesQuery,
     useGetFilmsQuery,
+    useGetSerialsQuery,
+    useGetTopFilmsQuery,
+    useGetCategoriesQuery,
+    useGetPremieresFilmsQuery,
 } = filmsAPI

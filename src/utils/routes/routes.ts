@@ -1,5 +1,6 @@
 export const PATH = {
     startPage: '/startPage',
+    movie: '/movie',
     topFilms: '/topFilmsPage',
     premieres: '/premieresPage',
     catalog: '/filmsPage',

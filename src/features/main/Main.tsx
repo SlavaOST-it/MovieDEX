@@ -10,6 +10,8 @@ import {PremieresPage} from "../premieresPage/PremieresPage";
 import {SettingsPage} from "../settings/SettingsPage";
 import {ThemeType} from "../../common/types/commonTypes";
 import {SerialsPage} from "../serialsPage/SerialsPage";
+import {MoviePage} from "../moviePage/MoviePage";
+
 
 type HeaderType = {
     theme: ThemeType,
@@ -24,6 +26,7 @@ export const Main: FC<HeaderType> = ({theme, setTheme}) => {
                 <Route path={PATH.topFilms} element={<TopFilmsPage/>}/>
                 <Route path={PATH.catalog} element={<FilmsPage/>}/>
                 <Route path={PATH.serials} element={<SerialsPage/>}/>
+                <Route path={PATH.movie} element={<MoviePage/>}/>
                 <Route path={PATH.settings} element={<SettingsPage theme={theme} setTheme={setTheme}/>}/>
             </Routes>
         </MainWrapper>

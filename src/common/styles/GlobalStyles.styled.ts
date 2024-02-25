@@ -34,7 +34,7 @@ export const GlobalStyled = createGlobalStyle<{ theme: any }>`
     }
 
     button {
-            display: inline-block;
+            //display: inline-block;
             border: none;
             margin: 0;
             padding: 0;

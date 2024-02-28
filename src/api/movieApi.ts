@@ -1,5 +1,13 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {MovieI} from "./types/MovieType";
+import {
+    AwardsMovieType,
+    FactsMovieType,
+    GenericMovieType,
+    MovieI,
+    MovieInfoType,
+    SeasonsMovieType, VideoMovieType
+} from "./types/MovieType";
+import {ActiveBlockType} from "../features/moviePage/MoreInfoBlock/MoreInfoBlock";
 
 
 export const movieApi = createApi({
@@ -22,16 +30,56 @@ export const movieApi = createApi({
             },
         }),
 
-        getSeasonsSerial: build.query<any, number>({
+        getSeasonsSerial: build.query<MovieInfoType<SeasonsMovieType>, number>({
             query(id) {
                 return {
-                    url: `films/${id}/season`,
+                    url: `films/${id}/seasons`,
                 }
             },
-        })
+        }),
+
+        getAwards: build.query<MovieInfoType<AwardsMovieType>, number>({
+            query(id) {
+                return {
+                    url: `films/${id}/awards`,
+                }
+            },
+        }),
+
+        getFacts: build.query<MovieInfoType<FactsMovieType>, number>({
+            query(id) {
+                return {
+                    url: `films/${id}/facts`,
+                }
+            },
+        }),
+
+        getVideos: build.query<MovieInfoType<VideoMovieType>, number>({
+            query(id) {
+                return {
+                    url: `films/${id}/videos`,
+                }
+            },
+        }),
+
+        getDistributions: build.query<any, number>({
+            query(id) {
+                return {
+                    url: `films/${id}/distributions`,
+                }
+            },
+        }),
+
     })
 
 })
 
 
-export const {useGetInfoMovieQuery} = movieApi
+export const {
+    useGetInfoMovieQuery,
+    useGetSeasonsSerialQuery,
+    useGetAwardsQuery,
+    useGetFactsQuery,
+    useGetVideosQuery,
+
+} = movieApi

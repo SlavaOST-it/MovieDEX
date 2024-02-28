@@ -45,3 +45,96 @@ export interface MovieI {
     has3D: boolean;
     lastSync: string;
 }
+
+
+export type MovieInfoType<T> = {
+    total: number,
+    items: T[]
+}
+
+export type GenericMovieType =
+    SeasonsMovieType
+| FactsMovieType
+| DistributionsMovieType
+| BoxOfficeMovieType
+| AwardsMovieType
+| VideoMovieType
+
+
+export type SeasonsMovieType = {
+    "number": number,
+    "episodes": [
+        {
+            "seasonNumber": number,
+            "episodeNumber": number,
+            "nameRu": string | null,
+            "nameEn": string | null,
+            "synopsis": string | null,
+            "releaseDate": string
+        }
+    ]
+}
+
+
+export type FactsMovieType = {
+    "text": string,
+    "type": "BLOOPER" | 'FACT',
+    "spoiler": boolean
+}
+
+
+export type DistributionsMovieType = {
+    "type": string,                              // узнать точный тип
+    "subType": string,
+    "date": string,
+    "reRelease": boolean,
+    "country": {
+        "country": string
+    },
+    "companies": [
+        {
+            "name": string
+        }
+    ]
+}
+
+export type BoxOfficeMovieType = {
+    "type": string,                           // узнать точный тип
+    "amount": number,
+    "currencyCode": string,
+    "name": string,
+    "symbol": string | symbol
+}
+
+export type AwardsMovieType = {
+    "name": string,
+    "win": boolean,
+    "imageUrl": string,
+    "nominationName": string,
+    "year": number,
+    "persons": [
+        {
+            "kinopoiskId": number,
+            "webUrl": string,
+            "nameRu": string,
+            "nameEn": string,
+            "sex": string,
+            "posterUrl": string,
+            "growth": number,
+            "birthday": string,
+            "death": string,
+            "age": number,
+            "birthplace": string,
+            "deathplace": string,
+            "profession": string
+
+        }
+    ]
+}
+
+export type VideoMovieType = {
+    "url": string,
+    "name": string,
+    "site": string
+}
+

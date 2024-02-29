@@ -103,7 +103,7 @@ export type BoxOfficeMovieType = {
     "amount": number,
     "currencyCode": string,
     "name": string,
-    "symbol": string | symbol
+    "symbol": string
 }
 
 export type AwardsMovieType = {
@@ -138,3 +138,45 @@ export type VideoMovieType = {
     "site": string
 }
 
+export type SimilarMovieType = {
+    "filmId": number,
+    "nameRu": string,
+    "nameEn": string,
+    "nameOriginal": string,
+    "posterUrl": string,
+    "posterUrlPreview": string,
+    "relationType": string              // проверить тип
+}
+
+export type ImagesMovieType = {
+    total: number,
+    totalPages: number,
+    items: [
+        {
+            imageUrl: string,
+            previewUrl: string
+        }
+    ]
+}
+
+export type LinksImagesMovieType =
+    'STILL'
+    | 'SHOOTING'
+    | 'POSTER'
+    | 'FAN_ART'
+    | 'PROMO'
+    | 'CONCEPT'
+    | 'WALLPAPER'
+    | 'COVER'
+    | 'SCREENSHOT'
+
+export type ExternalSourcesMovieType = {
+    "url": string,
+    "platform": string,
+    "logoUrl": string,
+    "positiveRating": number,
+    "negativeRating": number,
+    "author": string,
+    "title": string,
+    "description": string
+}

@@ -1,13 +1,15 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
     AwardsMovieType,
+    BoxOfficeMovieType, ExternalSourcesMovieType,
     FactsMovieType,
-    GenericMovieType,
+    ImagesMovieType,
     MovieI,
     MovieInfoType,
-    SeasonsMovieType, VideoMovieType
+    SeasonsMovieType,
+    SimilarMovieType,
+    VideoMovieType
 } from "./types/MovieType";
-import {ActiveBlockType} from "../features/moviePage/MoreInfoBlock/MoreInfoBlock";
 
 
 export const movieApi = createApi({
@@ -62,10 +64,37 @@ export const movieApi = createApi({
             },
         }),
 
-        getDistributions: build.query<any, number>({
+        getBoxOffice: build.query<MovieInfoType<BoxOfficeMovieType>, number>({
             query(id) {
                 return {
-                    url: `films/${id}/distributions`,
+                    url: `films/${id}/box_office`,
+                }
+            },
+        }),
+
+        getSimilar: build.query<MovieInfoType<SimilarMovieType>, number>({
+            query(id) {
+                return {
+                    url: `films/${id}/similars`,
+                }
+            },
+        }),
+
+        getImages: build.query<ImagesMovieType, {id: number, type?: string, page: number}>({
+            query(payload) {
+                return {
+                    url: `films/${payload.id}/images`,
+                    params: {
+                        ...payload
+                    }
+                }
+            },
+        }),
+
+        getExternalSources: build.query<MovieInfoType<ExternalSourcesMovieType>, number>({
+            query(id) {
+                return {
+                    url: `films/${id}/external_sources`,
                 }
             },
         }),
@@ -82,4 +111,8 @@ export const {
     useGetFactsQuery,
     useGetVideosQuery,
 
+    useGetBoxOfficeQuery,
+    useGetSimilarQuery,
+    useGetImagesQuery,
+    useGetExternalSourcesQuery,
 } = movieApi

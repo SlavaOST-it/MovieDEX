@@ -11,6 +11,7 @@ import {SettingsPage} from "../settings/SettingsPage";
 import {ThemeType} from "../../common/types/commonTypes";
 import {SerialsPage} from "../serialsPage/SerialsPage";
 import {MoviePage} from "../moviePage/MoviePage";
+import {ImagesBlockMovie} from "../../common/components/movieInfoBoxes/imagesMovie/ImagesBlockMovie";
 
 
 type HeaderType = {
@@ -27,6 +28,7 @@ export const Main: FC<HeaderType> = ({theme, setTheme}) => {
                 <Route path={PATH.catalog} element={<FilmsPage/>}/>
                 <Route path={PATH.serials} element={<SerialsPage/>}/>
                 <Route path={PATH.movie} element={<MoviePage/>}/>
+                <Route path={PATH.imagesMovie} element={<ImagesBlockMovie/>}/>
                 <Route path={PATH.settings} element={<SettingsPage theme={theme} setTheme={setTheme}/>}/>
             </Routes>
         </MainWrapper>

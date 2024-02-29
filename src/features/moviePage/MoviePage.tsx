@@ -6,7 +6,8 @@ import {useGetInfoMovieQuery} from "../../api/movieApi";
 import {useAppSelector} from "../../utils/hooks/hooks";
 import {ThemeType} from "../../common/types/commonTypes";
 import {Rating} from "../../common/components/cardMovie/CardMovie.styled";
-import { MoreInfoBlock } from './MoreInfoBlock/MoreInfoBlock';
+import {MoreInfoBlock} from './MoreInfoBlock/MoreInfoBlock';
+import {BackButton} from "../../common/components/backButton/BackButton.styled";
 
 
 export const MoviePage = () => {
@@ -18,9 +19,9 @@ export const MoviePage = () => {
 
     return (
         <WrapperMovie>
-            <button onClick={() => {
+            <BackButton onClick={() => {
                 navigate(-1)
-            }}> {`< Назад`}</button>
+            }}> {`< Назад`}</BackButton>
 
             <MainInfo>
                 <Poster src={data?.posterUrlPreview} alt={'poster'}/>
@@ -46,10 +47,10 @@ export const MoviePage = () => {
                                 <span>Страна</span>
                                 <strong>
                                     {data?.countries.map((el, index) => (
-                                        <>
-                                            {el.country}
-                                            {index !== data.countries.length - 1 ? ', ' : ''}
-                                        </>
+                                        <div key={index}>
+                                            {el?.country}
+                                            {index !== data?.countries.length - 1 ? ', ' : ''}
+                                        </div>
                                     ))}
                                 </strong>
                             </li>
@@ -57,15 +58,15 @@ export const MoviePage = () => {
                                 <span>Жанр</span>
                                 <strong>
                                     {data?.genres.map((el, index) => (
-                                        <>
+                                        <div key={index}>
                                             {el.genre}
-                                            {index !== data.genres.length - 1 ? ', ' : ''}
-                                        </>
+                                            {index !== data?.genres.length - 1 ? ', ' : ''}
+                                        </div>
                                     ))}
                                 </strong>
                             </li>
                             <li><span>Слоган</span> <strong>{data?.slogan ? data?.slogan : '-'}</strong></li>
-                            <li><span>Возраст</span> <strong>{data?.ratingAgeLimits.substring(3) + '+'}</strong></li>
+                            <li><span>Возраст</span> <strong>{data?.ratingAgeLimits ?  (data.ratingAgeLimits.substring(3) + '+') : '-'}</strong></li>
                             <li><span>Время</span><strong>{data?.filmLength} мин.</strong></li>
                         </ul>
                     </div>
@@ -81,12 +82,9 @@ export const MoviePage = () => {
             <MoreInfoBlock/>
 
 
-
         </WrapperMovie>
     );
 };
-
-
 
 
 export const RatingMovie = styled(Rating)`
@@ -120,6 +118,7 @@ export const InfoWrapper = styled.div<{ theme: ThemeType }>`
 
     li {
         display: flex;
+        padding: 6px 0;
 
         span {
             min-width: 250px;
@@ -132,21 +131,15 @@ export const InfoWrapper = styled.div<{ theme: ThemeType }>`
     }
 `
 
-export const MainInfo = styled.div<{theme: ThemeType}>`
+export const MainInfo = styled.div<{ theme: ThemeType }>`
     display: flex;
     padding: 20px 0 60px;
-    
+
     border-bottom: 1px solid ${props => props.theme.colors.secondary};
 `
 export const WrapperMovie = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    button {
-        font-family: 'Jura', sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.7;
-    }
+    margin-bottom: 50px;
 `

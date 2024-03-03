@@ -11,6 +11,7 @@ type HeaderType = {
 export const SettingsPage: FC<HeaderType> = ({theme, setTheme}) => {
     return (
         <div>
+            Страница в разработке
             <ToggleThemeBtn themeValue={theme} setTheme={setTheme}/>
         </div>
     );

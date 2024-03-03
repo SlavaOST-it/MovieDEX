@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/MovieDEX/static/js/main.e68375e5.js",
+    "main.js": "/MovieDEX/static/js/main.1352b7a8.js",
     "static/js/787.2ff6211e.chunk.js": "/MovieDEX/static/js/787.2ff6211e.chunk.js",
     "static/media/layer_girl.png": "/MovieDEX/static/media/layer_girl.29e8ad5fa32559106e36.png",
     "static/media/layer_flower_2.png": "/MovieDEX/static/media/layer_flower_2.d4d247bd5305f581342e.png",
@@ -8,10 +8,10 @@
     "static/media/layer_bg.png": "/MovieDEX/static/media/layer_bg.ac6ddf6067fc136fe586.png",
     "static/media/sprite.svg": "/MovieDEX/static/media/sprite.aadd3f0eacfda18ad2daefe97b5308fa.svg",
     "index.html": "/MovieDEX/index.html",
-    "main.e68375e5.js.map": "/MovieDEX/static/js/main.e68375e5.js.map",
+    "main.1352b7a8.js.map": "/MovieDEX/static/js/main.1352b7a8.js.map",
     "787.2ff6211e.chunk.js.map": "/MovieDEX/static/js/787.2ff6211e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.e68375e5.js"
+    "static/js/main.1352b7a8.js"
   ]
 }
